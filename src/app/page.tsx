@@ -17,6 +17,93 @@ function useInView(threshold = 0.1) {
   return { ref, inView };
 }
 
+const heroImages = [
+  "https://images.unsplash.com/photo-1540555700478-4be289fbec6d?w=1920&q=90",
+  "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&q=90",
+  "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1920&q=90",
+];
+
+function HeroCarousel() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* Rotating backgrounds */}
+      {heroImages.map((img, i) => (
+        <div
+          key={i}
+          className={`absolute inset-0 transition-opacity duration-[2000ms] ${i === current ? "opacity-100" : "opacity-0"}`}
+        >
+          <div className="absolute inset-0" style={{ backgroundImage: `url('${img}')`, backgroundSize: "cover", backgroundPosition: "center" }} />
+        </div>
+      ))}
+      <div className="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/60 to-navy/90" />
+
+      {/* Content */}
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        <div className="animate-fade-in" style={{ animationDelay: "0.2s", opacity: 0 }}>
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-2.5 rounded-full mb-8 border border-white/10">
+            <Award size={14} className="text-gold" />
+            <span className="text-gold text-xs font-body font-medium tracking-wide">5x Cary Living Diamond Award Winner</span>
+          </div>
+        </div>
+
+        <div className="animate-fade-in-up" style={{ animationDelay: "0.4s", opacity: 0 }}>
+          <h1 className="text-6xl sm:text-8xl md:text-9xl font-heading font-medium text-white mb-4" style={{ textShadow: "0 2px 30px rgba(0,0,0,0.3)" }}>
+            Nirvelli
+          </h1>
+        </div>
+
+        <div className="animate-fade-in" style={{ animationDelay: "0.6s", opacity: 0 }}>
+          <p className="text-white/80 text-sm md:text-base tracking-luxe uppercase font-body font-light mb-8" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}>
+            Med Spa & Laser - Cary, NC
+          </p>
+        </div>
+
+        <div className="animate-fade-in" style={{ animationDelay: "0.8s", opacity: 0 }}>
+          <div className="w-16 h-px bg-blue mx-auto mb-8" />
+          <p className="text-white/80 text-sm md:text-lg font-body font-light max-w-xl mx-auto leading-relaxed mb-10" style={{ textShadow: "0 1px 6px rgba(0,0,0,0.3)" }}>
+            Cary&apos;s premier med spa since 2003. Expert facials, massage, laser treatments, and injectables in a relaxing, award-winning environment.
+          </p>
+        </div>
+
+        <div className="animate-fade-in-up flex flex-col sm:flex-row items-center justify-center gap-4" style={{ animationDelay: "1s", opacity: 0 }}>
+          <Link href="/book" className="group px-8 py-3.5 bg-blue text-white text-xs tracking-elegant uppercase font-body font-medium hover:bg-blue-dark transition-all duration-300 flex items-center gap-2">
+            Book Appointment <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <Link href="/services" className="px-8 py-3.5 border border-white/30 text-white text-xs tracking-elegant uppercase font-body font-light hover:border-blue hover:text-blue transition-all duration-300">
+            View Services
+          </Link>
+        </div>
+
+        <div className="animate-fade-in mt-12 flex items-center justify-center gap-2 text-white/60" style={{ animationDelay: "1.2s", opacity: 0 }}>
+          <Phone size={14} />
+          <a href="tel:919-238-5040" className="text-sm font-body font-light hover:text-blue transition-colors">(919) 238-5040</a>
+        </div>
+      </div>
+
+      {/* Slide indicators */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
+        {heroImages.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            className={`h-1.5 rounded-full transition-all duration-500 ${i === current ? "bg-blue w-8" : "bg-white/30 w-1.5 hover:bg-white/50"}`}
+            aria-label={`Slide ${i + 1}`}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
 const services = [
   { title: "Facials & Skin Care", desc: "Clinically driven customized treatments designed to improve your skin's vitality. Chemical peels, microdermabrasion, and advanced skin rejuvenation.", icon: <Sparkles size={28} className="text-blue" /> },
   { title: "Massage Therapy", desc: "Award-winning massage therapy since 2003. Swedish, deep tissue, hot stone, aromatherapy, and medical massage.", icon: <Heart size={28} className="text-blue" /> },
@@ -77,53 +164,8 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-navy">
-          <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1540555700478-4be289fbec6d?w=1920&q=80')", backgroundSize: "cover", backgroundPosition: "center" }} />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/60 to-navy/90" />
-        </div>
-
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <div className="animate-fade-in" style={{ animationDelay: "0.2s", opacity: 0 }}>
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-8">
-              <Award size={14} className="text-gold" />
-              <span className="text-gold text-xs font-body font-medium tracking-wide">5x Cary Living Diamond Award Winner</span>
-            </div>
-          </div>
-
-          <div className="animate-fade-in-up" style={{ animationDelay: "0.4s", opacity: 0 }}>
-            <h1 className="text-5xl sm:text-7xl md:text-8xl font-heading font-medium text-white mb-4" style={{ textShadow: "0 2px 20px rgba(0,0,0,0.3)" }}>
-              Nirvelli
-            </h1>
-          </div>
-
-          <div className="animate-fade-in" style={{ animationDelay: "0.6s", opacity: 0 }}>
-            <p className="text-white/80 text-sm md:text-base tracking-luxe uppercase font-body font-light mb-8">Med Spa & Laser</p>
-          </div>
-
-          <div className="animate-fade-in" style={{ animationDelay: "0.8s", opacity: 0 }}>
-            <div className="w-16 h-px bg-blue mx-auto mb-8" />
-            <p className="text-white/70 text-sm md:text-lg font-body font-light max-w-xl mx-auto leading-relaxed mb-10">
-              Cary&apos;s premier med spa since 2003. Expert facials, massage therapy, laser treatments, and injectables in a relaxing, award-winning environment.
-            </p>
-          </div>
-
-          <div className="animate-fade-in-up flex flex-col sm:flex-row items-center justify-center gap-4" style={{ animationDelay: "1s", opacity: 0 }}>
-            <Link href="/book" className="group px-8 py-3.5 bg-blue text-white text-xs tracking-elegant uppercase font-body font-medium hover:bg-blue-dark transition-all duration-300 flex items-center gap-2">
-              Book Appointment <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link href="/services" className="px-8 py-3.5 border border-white/30 text-white text-xs tracking-elegant uppercase font-body font-light hover:border-blue hover:text-blue transition-all duration-300">
-              View Services
-            </Link>
-          </div>
-
-          <div className="animate-fade-in mt-12 flex items-center justify-center gap-2 text-white/50" style={{ animationDelay: "1.2s", opacity: 0 }}>
-            <Phone size={14} />
-            <a href="tel:919-238-5040" className="text-sm font-body font-light hover:text-blue transition-colors">(919) 238-5040</a>
-          </div>
-        </div>
-      </section>
+      {/* Hero with rotating images */}
+      <HeroCarousel />
 
       {/* Awards Banner */}
       <section className="py-5 bg-gold">

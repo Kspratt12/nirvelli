@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Menu, X, Phone } from "lucide-react";
 
 const navLinks = [
@@ -29,12 +28,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
-            <div className="relative w-10 h-10 md:w-12 md:h-12">
-              <Image src="/logo.png" alt="Nirvelli Med Spa" fill className="object-contain" sizes="48px" />
-            </div>
+          <Link href="/" className="flex items-center">
             <div>
-              <h1 className={`font-heading text-lg md:text-xl font-medium transition-colors duration-300 ${scrolled ? "text-navy" : "text-white"}`}>
+              <h1 className={`font-heading text-xl md:text-2xl font-medium transition-colors duration-300 ${scrolled ? "text-navy" : "text-white"}`}>
                 Nirvelli
               </h1>
               <p className={`text-[7px] md:text-[8px] tracking-luxe uppercase font-body font-light transition-colors duration-300 ${scrolled ? "text-text" : "text-white/70"}`}>
@@ -82,10 +78,7 @@ export default function Navbar() {
       <div className={`lg:hidden fixed inset-0 top-0 bg-white z-40 transition-all duration-500 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
         <div className="flex flex-col h-full">
           <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-            <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3">
-              <div className="relative w-10 h-10">
-                <Image src="/logo-black.png" alt="Nirvelli" fill className="object-contain" sizes="40px" />
-              </div>
+            <Link href="/" onClick={() => setIsOpen(false)}>
               <h2 className="font-heading text-xl font-medium text-navy">Nirvelli</h2>
             </Link>
             <button onClick={() => setIsOpen(false)} className="p-2 text-charcoal" aria-label="Close menu">
