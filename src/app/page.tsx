@@ -101,6 +101,117 @@ function HeroCarousel() {
   );
 }
 
+const quickBookCategories: Record<string, { name: string; price: string; duration: string; note?: string }[]> = {
+  "Facials": [
+    { name: "1st Time Facial", price: "$69", duration: "60 min", note: "New clients" },
+    { name: "Club OE Facial", price: "$89", duration: "60 min" },
+    { name: "Organic Eminence Facial", price: "$100", duration: "60 min" },
+    { name: "Age Corrective Facial", price: "$135", duration: "60 min" },
+  ],
+  "Massage": [
+    { name: "1st Time Massage", price: "$69", duration: "60 min", note: "New clients" },
+    { name: "Swedish Massage", price: "$89", duration: "50 min" },
+    { name: "Deep Tissue Massage", price: "$99", duration: "50 min" },
+    { name: "Deep Tissue Extended", price: "$135", duration: "80 min" },
+  ],
+  "HydraFacial": [
+    { name: "Signature HydraFacial", price: "$199", duration: "30 min" },
+    { name: "Deluxe HydraFacial", price: "$275", duration: "60 min" },
+    { name: "Platinum HydraFacial", price: "$325", duration: "90 min" },
+  ],
+  "Injectables": [
+    { name: "Botox / Xeomin / Jeuveau", price: "$14/unit", duration: "30 min" },
+    { name: "Dysport", price: "$14/unit", duration: "30 min" },
+    { name: "Restylane Kysse (lips)", price: "$900", duration: "30 min" },
+    { name: "Injectable Consultation", price: "$45", duration: "30 min" },
+  ],
+  "Waxing": [
+    { name: "Brow Wax", price: "$18", duration: "15 min" },
+    { name: "Brow, Chin & Lip Trio", price: "$35", duration: "20 min" },
+    { name: "Brazilian (Female)", price: "$55", duration: "30 min" },
+    { name: "Full Leg Wax", price: "$60", duration: "45 min" },
+  ],
+  "Nails": [
+    { name: "Signature Manicure", price: "$45", duration: "30 min" },
+    { name: "Signature Pedicure", price: "$55", duration: "45 min" },
+    { name: "Dip Manicure", price: "$60", duration: "45 min" },
+    { name: "Hot Stone Pedicure", price: "$70", duration: "60 min" },
+  ],
+};
+
+function QuickBookWidget() {
+  const [activeTab, setActiveTab] = useState("Facials");
+  const [selectedService, setSelectedService] = useState("");
+  const tabs = Object.keys(quickBookCategories);
+
+  return (
+    <section className="relative -mt-16 z-20 overflow-hidden">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white shadow-2xl">
+          {/* Header with tabs */}
+          <div className="p-5 md:p-8 pb-0">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-5">
+              <h2 className="text-2xl md:text-3xl font-heading font-medium text-navy">Book your service</h2>
+              <div className="flex flex-wrap gap-1.5">
+                {tabs.map(tab => (
+                  <button
+                    key={tab}
+                    onClick={() => { setActiveTab(tab); setSelectedService(""); }}
+                    className={`px-3 py-1.5 text-[10px] tracking-wide font-body font-medium border transition-all ${
+                      activeTab === tab ? "bg-navy text-white border-navy" : "bg-white text-charcoal border-gray-300 hover:border-navy"
+                    }`}
+                  >
+                    {tab}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Service options with radio buttons */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1 pb-5 border-b border-gray-200">
+              {quickBookCategories[activeTab]?.map(service => (
+                <label
+                  key={service.name}
+                  className="flex items-center justify-between py-2.5 cursor-pointer group"
+                  onClick={() => setSelectedService(service.name)}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${
+                      selectedService === service.name ? "border-blue" : "border-gray-300 group-hover:border-blue/50"
+                    }`}>
+                      {selectedService === service.name && <div className="w-2 h-2 rounded-full bg-blue" />}
+                    </div>
+                    <div>
+                      <span className="text-sm font-body font-light text-charcoal group-hover:text-blue transition-colors">{service.name}</span>
+                      <span className="text-[10px] text-text/40 ml-2">{service.duration}</span>
+                      {service.note && <span className="text-[10px] text-blue ml-1 font-medium">{service.note}</span>}
+                    </div>
+                  </div>
+                  <span className="text-sm font-body font-medium text-navy">{service.price}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="p-5 md:p-8 pt-4">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-3 text-xs text-text font-body font-light">
+                <span className="flex items-center gap-1.5"><Clock size={12} className="text-blue" /> Mon-Fri: 7am-7pm</span>
+                <span className="flex items-center gap-1.5"><Clock size={12} className="text-blue" /> Sat: 9am-4pm</span>
+                <a href="tel:919-238-5040" className="flex items-center gap-1.5 hover:text-blue transition-colors"><Phone size={12} className="text-blue" /> (919) 238-5040</a>
+              </div>
+              <Link href="/book" className="shrink-0 px-10 py-3 bg-navy text-white text-xs tracking-elegant uppercase font-body font-medium hover:bg-blue transition-all duration-300">
+                Book Now
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const services = [
   { title: "Facials & Skin Care", desc: "Clinically driven customized treatments designed to improve your skin's vitality. Chemical peels, microdermabrasion, and advanced skin rejuvenation.", icon: <Sparkles size={28} className="text-blue" /> },
   { title: "Massage Therapy", desc: "Award-winning massage therapy since 2003. Swedish, deep tissue, hot stone, aromatherapy, and medical massage.", icon: <Heart size={28} className="text-blue" /> },
@@ -165,45 +276,7 @@ export default function Home() {
       <HeroCarousel />
 
       {/* Quick Book Widget - overlaps hero */}
-      <section className="relative -mt-16 z-20 overflow-hidden">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white shadow-2xl p-6 md:p-8">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-5">
-              <h2 className="text-2xl md:text-3xl font-heading font-medium text-navy">Book your service</h2>
-              <div className="flex flex-wrap gap-2">
-                {["Facials", "Massage", "HydraFacial", "Injectables"].map(cat => (
-                  <Link key={cat} href="/book" className="px-4 py-2 text-[10px] tracking-wide font-body font-medium border border-gray-300 text-charcoal hover:bg-navy hover:text-white hover:border-navy transition-all">
-                    {cat}
-                  </Link>
-                ))}
-              </div>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 pb-5 border-b border-gray-200">
-              {[
-                { name: "1st Time Facial", price: "$69" },
-                { name: "1st Time Massage", price: "$69" },
-                { name: "Signature HydraFacial", price: "$199" },
-                { name: "Botox / Xeomin", price: "$14/unit" },
-              ].map(s => (
-                <div key={s.name} className="flex items-center justify-between py-2">
-                  <span className="text-sm font-body font-light text-charcoal">{s.name}</span>
-                  <span className="text-sm font-body font-medium text-blue">{s.price}</span>
-                </div>
-              ))}
-            </div>
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-5">
-              <div className="flex flex-wrap items-center gap-3 text-xs text-text font-body font-light">
-                <span className="flex items-center gap-1.5"><Clock size={12} className="text-blue" /> Mon-Fri: 7am-7pm</span>
-                <span className="flex items-center gap-1.5"><Clock size={12} className="text-blue" /> Sat: 9am-4pm</span>
-                <a href="tel:919-238-5040" className="flex items-center gap-1.5 hover:text-blue transition-colors"><Phone size={12} className="text-blue" /> (919) 238-5040</a>
-              </div>
-              <Link href="/book" className="shrink-0 px-10 py-3 bg-navy text-white text-xs tracking-elegant uppercase font-body font-medium hover:bg-blue transition-all duration-300">
-                Book Now
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <QuickBookWidget />
 
       {/* Awards Banner */}
       <section className="py-5 bg-gold">
