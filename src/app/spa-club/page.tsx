@@ -38,8 +38,8 @@ export default function SpaClub() {
                 "15% off all retail products",
                 "15% off all spa add-on services",
                 "Priority booking access",
-                "No long-term contracts",
-                "Cancel anytime",
+                "Unused services roll over (up to 6 months)",
+                "Additional services at $89 each",
               ].map((perk) => (
                 <div key={perk} className="flex items-start gap-3">
                   <Check size={16} className="text-blue shrink-0 mt-0.5" />
