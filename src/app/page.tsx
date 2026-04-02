@@ -112,11 +112,11 @@ const services = [
 ];
 
 const reviews = [
+  { name: "Cheryl Breidenbach", stars: 5, text: "I just had one of the best massages of my life at Nirvelli Med Spa. The masseuse's name is Kristen Roth. I'm from NYC and have been to several different masseuses. She used just the right amount of pressure and found and released tendons that others have not been able to find. I walked out feeling totally refreshed.", service: "Massage" },
+  { name: "Roberto Client", stars: 5, text: "I went to Nirvelli for the first time this weekend and had a massage with Roberto. He was very professional and took time to get to know me prior to my service. It was one of the best massages I've had and I would definitely recommend him.", service: "Massage" },
   { name: "Sarah M.", stars: 5, text: "The masseuses and aestheticians at Nirvelli are among the best in the Triangle. I've been coming here for years and the quality never drops.", service: "Massage & Facial" },
   { name: "Jennifer L.", stars: 5, text: "Dr. Heather and her team are incredible. The laser treatments have completely transformed my skin. Worth every penny.", service: "Laser Treatment" },
-  { name: "Amanda K.", stars: 5, text: "Best spa experience in Cary hands down. The atmosphere is so relaxing and the staff genuinely cares about results.", service: "Facial" },
   { name: "Rachel T.", stars: 5, text: "I've been a Spa Club member for over a year. $89/month for a premium treatment is an absolute steal. Love this place.", service: "Spa Club Member" },
-  { name: "Michelle D.", stars: 5, text: "Five-time Diamond Award winner for a reason. Nirvelli is the gold standard for med spas in the Cary area.", service: "Multiple Services" },
 ];
 
 const faqs = [
@@ -181,6 +181,33 @@ export default function Home() {
               <span className="text-[10px] sm:text-xs font-body font-medium tracking-wide uppercase">{item.text}</span>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* New Client Specials */}
+      <section className="py-14 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <p className="text-blue text-xs tracking-luxe uppercase font-body font-light mb-3">New Client Specials</p>
+            <h2 className="text-3xl md:text-4xl font-heading font-medium text-navy">First Time? We&apos;ve Got You.</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            <div className="bg-ice p-8 text-center border border-blue/10 hover:border-blue/30 transition-colors">
+              <p className="text-4xl font-heading font-medium text-blue mb-2">$69</p>
+              <p className="text-lg font-heading font-medium text-navy mb-1">One Hour Facial</p>
+              <p className="text-xs font-body font-light text-text">New clients only. 60 min customized facial.</p>
+            </div>
+            <div className="bg-ice p-8 text-center border border-blue/10 hover:border-blue/30 transition-colors">
+              <p className="text-4xl font-heading font-medium text-blue mb-2">$69</p>
+              <p className="text-lg font-heading font-medium text-navy mb-1">One Hour Massage</p>
+              <p className="text-xs font-body font-light text-text">New clients only. 60 min customized massage.</p>
+            </div>
+          </div>
+          <div className="text-center mt-8">
+            <a href="tel:919-238-5040" className="group inline-flex items-center gap-2 px-8 py-3 bg-navy text-white text-xs tracking-elegant uppercase font-body font-medium hover:bg-blue transition-all duration-300">
+              Book Your First Visit <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
         </div>
       </section>
 

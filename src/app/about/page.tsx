@@ -74,7 +74,7 @@ export default function About() {
               <p className="text-xs tracking-elegant uppercase font-body font-light text-blue mb-2">Owner & Founder</p>
               <h3 className="text-2xl font-heading font-medium text-navy mb-4">Dr. Heather Sefried, DC</h3>
               <p className="text-text text-sm font-body font-light leading-relaxed">
-                Born and raised in Johnstown, Pennsylvania, Dr. Heather received her Doctor of Chiropractic degree from Sherman College of Chiropractic in 1999. Her passion for holistic wellness led her to create Nirvelli, where she combines chiropractic care with advanced aesthetic treatments.
+                Born and raised in Johnstown, Pennsylvania, Dr. Heather received her Doctor of Chiropractic degree from Sherman College of Chiropractic in Spartanburg, South Carolina in 1999. The driving force behind Nirvelli, her passion for holistic wellness led her to create a sanctuary where clinical expertise meets deep relaxation.
               </p>
             </div>
 
@@ -86,7 +86,7 @@ export default function About() {
               <p className="text-xs tracking-elegant uppercase font-body font-light text-blue mb-2">Co-Owner & Chiropractor</p>
               <h3 className="text-2xl font-heading font-medium text-navy mb-4">Dr. David Sefried, DC</h3>
               <p className="text-text text-sm font-body font-light leading-relaxed">
-                Dr. David brings expertise in chiropractic care and acupuncture to Nirvelli. His holistic approach to wellness complements the spa&apos;s comprehensive menu of services, ensuring clients receive care that addresses both aesthetics and overall well-being.
+                Dr. David provides chiropractic treatments and acupuncture through Preston Chiropractic and Acupuncture. His holistic approach to wellness complements the spa&apos;s comprehensive menu of services, ensuring clients receive care that addresses both aesthetics and overall well-being.
               </p>
             </div>
           </div>
