@@ -51,7 +51,7 @@ function HeroCarousel() {
         <div className="animate-fade-in" style={{ animationDelay: "0.2s", opacity: 0 }}>
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-2.5 rounded-full mb-8 border border-white/10">
             <Award size={14} className="text-gold" />
-            <span className="text-gold text-xs font-body font-medium tracking-wide">5x Cary Living Diamond Award Winner</span>
+            <span className="text-gold text-[10px] font-body font-medium tracking-wide">5x Cary Living Diamond Award Winner</span>
           </div>
         </div>
 
