@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Clock, MapPin, Phone, Star, Award, Sparkles, Heart, Shield } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -17,11 +18,7 @@ function useInView(threshold = 0.1) {
   return { ref, inView };
 }
 
-const heroImages = [
-  "https://images.unsplash.com/photo-1540555700478-4be289fbec6d?w=1920&q=90",
-  "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&q=90",
-  "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1920&q=90",
-];
+const heroImages = ["/hero-1.jpg", "/hero-2.jpg", "/hero-3.jpg"];
 
 function HeroCarousel() {
   const [current, setCurrent] = useState(0);
@@ -41,22 +38,22 @@ function HeroCarousel() {
           key={i}
           className={`absolute inset-0 transition-opacity duration-[2000ms] ${i === current ? "opacity-100" : "opacity-0"}`}
         >
-          <div className="absolute inset-0" style={{ backgroundImage: `url('${img}')`, backgroundSize: "cover", backgroundPosition: "center" }} />
+          <Image src={img} alt="Nirvelli Med Spa" fill className="object-cover" priority={i === 0} quality={90} sizes="100vw" />
         </div>
       ))}
       <div className="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/60 to-navy/90" />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto pt-16 sm:pt-20">
         <div className="animate-fade-in" style={{ animationDelay: "0.2s", opacity: 0 }}>
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-2.5 rounded-full mb-8 border border-white/10">
-            <Award size={14} className="text-gold" />
-            <span className="text-gold text-[10px] font-body font-medium tracking-wide">5x Cary Living Diamond Award Winner</span>
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-2.5 rounded-full mb-6 border border-white/10">
+            <Award size={12} className="text-gold" />
+            <span className="text-gold text-[9px] sm:text-[10px] font-body font-medium tracking-wide">5x Cary Living Diamond Award Winner</span>
           </div>
         </div>
 
         <div className="animate-fade-in-up" style={{ animationDelay: "0.4s", opacity: 0 }}>
-          <h1 className="text-6xl sm:text-8xl md:text-9xl font-heading font-medium text-white mb-4" style={{ textShadow: "0 2px 30px rgba(0,0,0,0.3)" }}>
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-heading font-medium text-white mb-3" style={{ textShadow: "0 2px 30px rgba(0,0,0,0.3)" }}>
             Nirvelli
           </h1>
         </div>
@@ -166,6 +163,47 @@ export default function Home() {
     <>
       {/* Hero with rotating images */}
       <HeroCarousel />
+
+      {/* Quick Book Widget - overlaps hero */}
+      <section className="relative -mt-16 z-20 overflow-hidden">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white shadow-2xl p-6 md:p-8">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-5">
+              <h2 className="text-2xl md:text-3xl font-heading font-medium text-navy">Book your service</h2>
+              <div className="flex flex-wrap gap-2">
+                {["Facials", "Massage", "HydraFacial", "Injectables"].map(cat => (
+                  <Link key={cat} href="/book" className="px-4 py-2 text-[10px] tracking-wide font-body font-medium border border-gray-300 text-charcoal hover:bg-navy hover:text-white hover:border-navy transition-all">
+                    {cat}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 pb-5 border-b border-gray-200">
+              {[
+                { name: "1st Time Facial", price: "$69" },
+                { name: "1st Time Massage", price: "$69" },
+                { name: "Signature HydraFacial", price: "$199" },
+                { name: "Botox / Xeomin", price: "$14/unit" },
+              ].map(s => (
+                <div key={s.name} className="flex items-center justify-between py-2">
+                  <span className="text-sm font-body font-light text-charcoal">{s.name}</span>
+                  <span className="text-sm font-body font-medium text-blue">{s.price}</span>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-5">
+              <div className="flex flex-wrap items-center gap-3 text-xs text-text font-body font-light">
+                <span className="flex items-center gap-1.5"><Clock size={12} className="text-blue" /> Mon-Fri: 7am-7pm</span>
+                <span className="flex items-center gap-1.5"><Clock size={12} className="text-blue" /> Sat: 9am-4pm</span>
+                <a href="tel:919-238-5040" className="flex items-center gap-1.5 hover:text-blue transition-colors"><Phone size={12} className="text-blue" /> (919) 238-5040</a>
+              </div>
+              <Link href="/book" className="shrink-0 px-10 py-3 bg-navy text-white text-xs tracking-elegant uppercase font-body font-medium hover:bg-blue transition-all duration-300">
+                Book Now
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Awards Banner */}
       <section className="py-5 bg-gold">
