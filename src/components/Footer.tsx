@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, Phone, Mail, Clock, ArrowRight } from "lucide-react";
 
 const BOOKING_URL = "https://clients.mindbodyonline.com/ASP/adm/adm_appt_search.asp?studioid=711769&prodGroupId=&page=&stype=&optForwardingLink=&nLgIn=&trn=0&lvl=&catid=&prodid=&date=4%2F4%2F2026&classid=0&view=&sSU=&qParam=&tg=&loc=1&vt=&justloggedin=&pMode=0";
@@ -10,10 +11,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-heading font-medium text-white mb-2">Nirvelli</h3>
-            <p className="text-[9px] tracking-luxe uppercase font-body font-light text-white/50 mb-6">
-              Med Spa & Laser
-            </p>
+            <div className="flex items-center gap-3 mb-4">
+              <Image src="/logo.png" alt="Nirvelli Med Spa & Laser" width={48} height={56} className="drop-shadow-lg" />
+              <div>
+                <h3 className="text-2xl font-heading font-medium text-white">Nirvelli</h3>
+                <p className="text-[9px] tracking-luxe uppercase font-body font-light text-white/50">
+                  Med Spa & Laser
+                </p>
+              </div>
+            </div>
             <p className="text-sm text-white/60 leading-relaxed font-light mb-4">
               Cary&apos;s premier med spa since 2003. 5x Cary Living Diamond Award Winner. Medical-grade treatments for real results.
             </p>

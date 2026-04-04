@@ -22,6 +22,10 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: "Nirvelli Med Spa & Laser | Best Med Spa in Cary NC | Facials, Massage, Acupuncture",
+  icons: {
+    icon: "/logo-black.png",
+    apple: "/logo.png",
+  },
   description:
     "Nirvelli Med Spa is Cary NC's top-rated med spa since 2003. 5x Diamond Award Winner offering medical-grade facials, massage therapy, acupuncture, laser treatments, HydraFacial, and injectables. Serving Raleigh, Holly Springs & Morrisville. Book today!",
   keywords:

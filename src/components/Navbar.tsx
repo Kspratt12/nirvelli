@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, Phone } from "lucide-react";
 
 const BOOKING_URL = "https://clients.mindbodyonline.com/ASP/adm/adm_appt_search.asp?studioid=711769&prodGroupId=&page=&stype=&optForwardingLink=&nLgIn=&trn=0&lvl=&catid=&prodid=&date=4%2F4%2F2026&classid=0&view=&sSU=&qParam=&tg=&loc=1&vt=&justloggedin=&pMode=0";
@@ -31,7 +32,8 @@ export default function Navbar() {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass shadow-sm py-2" : "bg-transparent py-4"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center gap-2.5">
+            <Image src="/logo-black.png" alt="Nirvelli" width={28} height={36} className={`transition-all duration-300 ${scrolled ? "invert-0" : "invert brightness-200"}`} />
             <div>
               <h1 className={`font-heading text-xl md:text-2xl font-medium transition-colors duration-300 ${scrolled ? "text-navy" : "text-white"}`}>
                 Nirvelli
