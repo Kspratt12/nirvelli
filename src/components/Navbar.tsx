@@ -87,21 +87,23 @@ export default function Navbar() {
 
       <div className={`lg:hidden fixed inset-0 top-0 bg-white z-40 transition-all duration-500 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
         <div className="flex flex-col h-full">
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-            <Link href="/" onClick={() => setIsOpen(false)}>
+          <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+            <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
+              <Image src="/logo-black.png" alt="Nirvelli" width={22} height={28} />
               <h2 className="font-heading text-xl font-medium text-navy">Nirvelli</h2>
             </Link>
-            <button onClick={() => setIsOpen(false)} className="p-2 text-charcoal" aria-label="Close menu">
+            <button onClick={() => setIsOpen(false)} className="p-2 text-charcoal hover:text-blue transition-colors" aria-label="Close menu">
               <X size={24} />
             </button>
           </div>
-          <div className="flex-1 flex flex-col justify-center px-6 gap-2">
-            {navLinks.map((link) => (
+          <div className="flex-1 flex flex-col justify-center px-8 gap-1">
+            {navLinks.map((link, i) => (
               <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="py-3 text-center text-sm tracking-elegant uppercase font-body font-light text-charcoal border border-gray-200 hover:border-navy transition-all duration-200"
+                className="py-3.5 text-center text-sm tracking-wide uppercase font-body font-light text-charcoal rounded-lg hover:bg-ice hover:text-blue transition-all duration-200"
+                style={{ animationDelay: `${i * 50}ms` }}
               >
                 {link.name}
               </Link>
@@ -111,16 +113,17 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
-              className="py-3 text-center text-sm tracking-elegant uppercase font-body font-semibold bg-blue text-white border border-blue"
+              className="mt-2 py-3.5 text-center text-sm tracking-elegant uppercase font-body font-bold bg-blue text-white rounded-lg hover:bg-blue-dark transition-all"
             >
               Book Appointment
             </a>
           </div>
-          <div className="px-8 py-6 border-t border-gray-100">
-            <a href="tel:919-297-0107" className="flex items-center gap-2 text-sm text-blue font-medium">
+          <div className="px-8 py-6 border-t border-gray-100 flex items-center justify-between">
+            <a href="tel:919-297-0107" className="flex items-center gap-2 text-sm text-blue font-semibold">
               <Phone size={16} />
               (919) 297-0107
             </a>
+            <p className="text-[10px] text-text/40 font-body">Mon-Sat, Same-day available</p>
           </div>
         </div>
       </div>
