@@ -33,7 +33,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
-            <Image src="/logo-black.png" alt="Nirvelli" width={28} height={36} className={`transition-all duration-300 ${scrolled ? "invert-0" : "invert brightness-200"}`} />
+            <Image src="/logo-black.png" alt="Nirvelli" width={28} height={36} className={`transition-all duration-300 ${scrolled ? "opacity-100" : "opacity-0 w-0"}`} />
             <div>
               <h1 className={`font-heading text-xl md:text-2xl font-medium transition-colors duration-300 ${scrolled ? "text-navy" : "text-white"}`}>
                 Nirvelli
