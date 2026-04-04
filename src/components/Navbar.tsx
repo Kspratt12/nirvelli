@@ -13,6 +13,7 @@ const navLinks = [
   { name: "Facials", href: "/facials" },
   { name: "Acupuncture", href: "/acupuncture" },
   { name: "Spa Club", href: "/spa-club" },
+  { name: "Resources", href: "/resources" },
   { name: "Contact", href: "/contact" },
 ];
 

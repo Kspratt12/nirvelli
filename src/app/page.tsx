@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Clock, MapPin, Phone, Star, Award, Sparkles, Heart, Shield, CheckCircle, Users, Calendar, Download, Eye, Zap, Target, TrendingUp } from "lucide-react";
+import { ArrowRight, Clock, MapPin, Phone, Star, Award, Sparkles, Heart, Shield, CheckCircle, Users, Calendar, Eye, Zap, Target, TrendingUp } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const BOOKING_URL = "https://clients.mindbodyonline.com/ASP/adm/adm_appt_search.asp?studioid=711769&prodGroupId=&page=&stype=&optForwardingLink=&nLgIn=&trn=0&lvl=&catid=&prodid=&date=4%2F4%2F2026&classid=0&view=&sSU=&qParam=&tg=&loc=1&vt=&justloggedin=&pMode=0";
@@ -23,7 +23,7 @@ function useInView(threshold = 0.1) {
 }
 
 /* ─── HERO ─── */
-const heroImages = ["/facial-acupuncture.png", "/our-massage-therapist-and-specialist.png", "/acupuncture.png"];
+const heroImages = ["/main-hero-massage.jpg", "/main-hero-2-cupping-massage.jpg", "/main-hero-3.png"];
 
 function HeroSection() {
   const [current, setCurrent] = useState(0);
@@ -124,35 +124,35 @@ function TrustBar() {
 }
 
 /* ─── QUICK BOOK ─── */
-const quickBookCategories: Record<string, { name: string; price: string; duration: string; note?: string }[]> = {
+const quickBookCategories: Record<string, { name: string; price: string; duration: string; note?: string; icon: string }[]> = {
   "Facials": [
-    { name: "1st Time Facial", price: "$69", duration: "60 min", note: "New clients" },
-    { name: "Club OE Facial", price: "$89", duration: "60 min" },
-    { name: "Organic Eminence Facial", price: "$100", duration: "60 min" },
-    { name: "Age Corrective Facial", price: "$135", duration: "60 min" },
+    { name: "1st Time Facial", price: "$69", duration: "60 min", note: "New clients", icon: "sparkles" },
+    { name: "Club OE Facial", price: "$89", duration: "60 min", icon: "sparkles" },
+    { name: "Organic Eminence Facial", price: "$100", duration: "60 min", icon: "sparkles" },
+    { name: "Age Corrective Facial", price: "$135", duration: "60 min", icon: "sparkles" },
   ],
   "Massage": [
-    { name: "1st Time Massage", price: "$69", duration: "60 min", note: "New clients" },
-    { name: "Swedish Massage", price: "$89", duration: "50 min" },
-    { name: "Deep Tissue Massage", price: "$99", duration: "50 min" },
-    { name: "Deep Tissue Extended", price: "$135", duration: "80 min" },
+    { name: "1st Time Massage", price: "$69", duration: "60 min", note: "New clients", icon: "heart" },
+    { name: "Swedish Massage", price: "$89", duration: "50 min", icon: "heart" },
+    { name: "Deep Tissue Massage", price: "$99", duration: "50 min", icon: "heart" },
+    { name: "Deep Tissue Extended", price: "$135", duration: "80 min", icon: "heart" },
   ],
   "HydraFacial": [
-    { name: "Signature HydraFacial", price: "$199", duration: "30 min" },
-    { name: "Deluxe HydraFacial", price: "$275", duration: "60 min" },
-    { name: "Platinum HydraFacial", price: "$325", duration: "90 min" },
+    { name: "Signature HydraFacial", price: "$199", duration: "30 min", icon: "zap" },
+    { name: "Deluxe HydraFacial", price: "$275", duration: "60 min", icon: "zap" },
+    { name: "Platinum HydraFacial", price: "$325", duration: "90 min", icon: "zap" },
   ],
   "Injectables": [
-    { name: "Botox / Xeomin / Jeuveau", price: "$14/unit", duration: "30 min" },
-    { name: "Dysport", price: "$14/unit", duration: "30 min" },
-    { name: "Restylane Kysse (lips)", price: "$900", duration: "30 min" },
-    { name: "Injectable Consultation", price: "$45", duration: "30 min" },
+    { name: "Botox / Xeomin / Jeuveau", price: "$14/unit", duration: "30 min", icon: "target" },
+    { name: "Dysport", price: "$14/unit", duration: "30 min", icon: "target" },
+    { name: "Restylane Kysse (lips)", price: "$900", duration: "30 min", icon: "target" },
+    { name: "Injectable Consultation", price: "$45", duration: "30 min", icon: "target" },
   ],
   "Waxing": [
-    { name: "Brow Wax", price: "$18", duration: "15 min" },
-    { name: "Brow, Chin & Lip Trio", price: "$35", duration: "20 min" },
-    { name: "Brazilian (Female)", price: "$55", duration: "30 min" },
-    { name: "Full Leg Wax", price: "$60", duration: "45 min" },
+    { name: "Brow Wax", price: "$18", duration: "15 min", icon: "eye" },
+    { name: "Brow, Chin & Lip Trio", price: "$35", duration: "20 min", icon: "eye" },
+    { name: "Brazilian (Female)", price: "$55", duration: "30 min", icon: "eye" },
+    { name: "Full Leg Wax", price: "$60", duration: "45 min", icon: "eye" },
   ],
 };
 
@@ -162,19 +162,25 @@ function QuickBookWidget() {
   const tabs = Object.keys(quickBookCategories);
 
   return (
-    <section className="relative z-20 mt-8 overflow-hidden">
+    <section className="relative z-20 -mt-16 pb-4">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white shadow-2xl rounded-sm">
-          <div className="p-5 md:p-8 pb-0">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-5">
-              <h2 className="text-2xl md:text-3xl font-heading font-semibold text-navy">Book Your Service</h2>
-              <div className="flex flex-wrap gap-1.5">
+        <div className="bg-white shadow-[0_20px_60px_rgba(0,0,0,0.12)] rounded-2xl overflow-hidden">
+          {/* Header */}
+          <div className="bg-gradient-to-r from-navy via-navy to-blue/90 p-6 md:p-8">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div>
+                <h2 className="text-2xl md:text-3xl font-heading font-semibold text-white">Book Your Service</h2>
+                <p className="text-white/50 text-sm font-body font-light mt-1">Select a category to explore treatments</p>
+              </div>
+              <div className="flex flex-wrap gap-2">
                 {tabs.map(tab => (
                   <button
                     key={tab}
                     onClick={() => { setActiveTab(tab); setSelectedService(""); }}
-                    className={`px-3 py-1.5 text-[10px] tracking-wide font-body font-medium border transition-all ${
-                      activeTab === tab ? "bg-navy text-white border-navy" : "bg-white text-charcoal border-gray-300 hover:border-navy"
+                    className={`px-4 py-2 text-[11px] tracking-wide font-body font-semibold rounded-full transition-all duration-300 ${
+                      activeTab === tab
+                        ? "bg-white text-navy shadow-md"
+                        : "bg-white/10 text-white/80 hover:bg-white/20"
                     }`}
                   >
                     {tab}
@@ -182,44 +188,63 @@ function QuickBookWidget() {
                 ))}
               </div>
             </div>
+          </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1 pb-5 border-b border-gray-200">
+          {/* Services Grid */}
+          <div className="p-6 md:p-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {quickBookCategories[activeTab]?.map(service => (
-                <label
+                <button
                   key={service.name}
-                  className="flex items-center justify-between py-2.5 cursor-pointer group"
                   onClick={() => setSelectedService(service.name)}
+                  className={`relative flex items-center justify-between p-5 rounded-xl border-2 transition-all duration-300 text-left group ${
+                    selectedService === service.name
+                      ? "border-blue bg-blue/5 shadow-md"
+                      : "border-gray-100 hover:border-blue/30 hover:shadow-sm"
+                  }`}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${
-                      selectedService === service.name ? "border-blue" : "border-gray-300 group-hover:border-blue/50"
+                  <div className="flex items-center gap-4">
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
+                      selectedService === service.name ? "bg-blue text-white" : "bg-ice text-blue group-hover:bg-blue/10"
                     }`}>
-                      {selectedService === service.name && <div className="w-2 h-2 rounded-full bg-blue" />}
+                      <Sparkles size={18} />
                     </div>
                     <div>
-                      <span className="text-sm font-body font-light text-charcoal group-hover:text-blue transition-colors">{service.name}</span>
-                      <span className="text-[10px] text-text/40 ml-2">{service.duration}</span>
-                      {service.note && <span className="text-[10px] text-blue ml-1 font-medium">{service.note}</span>}
+                      <p className={`text-sm font-body font-semibold transition-colors ${
+                        selectedService === service.name ? "text-blue" : "text-navy"
+                      }`}>{service.name}</p>
+                      <div className="flex items-center gap-2 mt-0.5">
+                        <span className="text-[11px] text-text/50 font-body">{service.duration}</span>
+                        {service.note && (
+                          <span className="text-[10px] text-white bg-blue/80 px-2 py-0.5 rounded-full font-body font-semibold">{service.note}</span>
+                        )}
+                      </div>
                     </div>
                   </div>
-                  <span className="text-sm font-body font-medium text-navy">{service.price}</span>
-                </label>
+                  <span className={`text-lg font-heading font-bold transition-colors ${
+                    selectedService === service.name ? "text-blue" : "text-navy"
+                  }`}>{service.price}</span>
+                  {selectedService === service.name && (
+                    <div className="absolute top-2 right-2">
+                      <CheckCircle size={16} className="text-blue" />
+                    </div>
+                  )}
+                </button>
               ))}
             </div>
           </div>
 
-          <div className="p-5 md:p-8 pt-4">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="flex flex-wrap items-center gap-3 text-xs text-text font-body font-light">
-                <span className="flex items-center gap-1.5"><Clock size={12} className="text-blue" /> Mon–Fri: 7am–7pm</span>
-                <span className="flex items-center gap-1.5"><Clock size={12} className="text-blue" /> Sat: 9am–4pm</span>
-                <a href={PHONE_HREF} className="flex items-center gap-1.5 hover:text-blue transition-colors"><Phone size={12} className="text-blue" /> {PHONE}</a>
+          {/* Footer CTA */}
+          <div className="px-6 md:px-8 pb-6 md:pb-8">
+            <div className="bg-ice rounded-xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-4 text-xs text-text font-body">
+                <span className="flex items-center gap-1.5 font-medium"><Clock size={13} className="text-blue" /> Mon–Fri: 7am–7pm</span>
+                <span className="flex items-center gap-1.5 font-medium"><Clock size={13} className="text-blue" /> Sat: 9am–4pm</span>
+                <a href={PHONE_HREF} className="flex items-center gap-1.5 font-semibold text-navy hover:text-blue transition-colors"><Phone size={13} className="text-blue" /> {PHONE}</a>
               </div>
-              <div className="text-center">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 px-10 py-3 bg-navy text-white text-xs tracking-elegant uppercase font-body font-semibold hover:bg-blue transition-all duration-300 inline-block">
-                  Book Now
-                </a>
-              </div>
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="group shrink-0 px-8 py-3.5 bg-blue text-white text-xs tracking-elegant uppercase font-body font-bold hover:bg-blue-dark rounded-lg transition-all duration-300 inline-flex items-center gap-2 shadow-md hover:shadow-lg">
+                Book Now <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </a>
             </div>
           </div>
         </div>
@@ -231,37 +256,53 @@ function QuickBookWidget() {
 /* ─── WHY CLIENTS CHOOSE NIRVELLI ─── */
 function WhyChooseUs() {
   const section = useInView();
-  const reasons = [
-    { icon: <Calendar size={28} className="text-blue" />, title: "20+ Years of Excellence", desc: "Trusted by the Cary community since 2003 with thousands of successful treatments and loyal clients." },
-    { icon: <Shield size={28} className="text-blue" />, title: "Medical-Grade Treatments", desc: "Advanced technology and clinical-grade products for real, measurable results — not just pampering." },
-    { icon: <Users size={28} className="text-blue" />, title: "Licensed Medical Professionals", desc: "Chiropractors, certified aestheticians, and trained specialists — not just spa technicians." },
-    { icon: <Heart size={28} className="text-blue" />, title: "Personalized Treatment Plans", desc: "Every plan is customized to your unique skin, body, and wellness goals. No cookie-cutter treatments." },
-    { icon: <TrendingUp size={28} className="text-blue" />, title: "Proven Results, Not Guesswork", desc: "Real transformations backed by experience and client reviews. We measure outcomes, not just effort." },
-    { icon: <Award size={28} className="text-blue" />, title: "Award-Winning Service", desc: "5x Cary Living Diamond Award. Voted Best Spa & Best Massage Therapist by Cary News." },
+  const highlights = [
+    { num: "20+", label: "Years Serving Cary", desc: "Trusted by the community since 2003" },
+    { num: "5x", label: "Diamond Award Winner", desc: "Cary Living Magazine" },
+    { num: "200+", label: "5-Star Reviews", desc: "Real clients, real results" },
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-32 bg-white">
       <div ref={section.ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-        <div className="text-center mb-16">
-          <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold mb-4">The Nirvelli Difference</p>
-          <h2 className="text-4xl md:text-[3.25rem] font-heading font-semibold text-navy mb-5 leading-tight">
-            Why Clients Choose <span className="italic text-blue">Nirvelli</span>
-          </h2>
-          <p className="text-text text-base font-body font-light max-w-xl mx-auto leading-relaxed">
-            Over 20 years of delivering real results with medical-grade treatments and personalized care in Cary, NC.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {reasons.map((r) => (
-            <div key={r.title} className="p-7 border border-gray-100 hover:border-blue/20 hover:shadow-lg transition-all duration-300 group">
-              <div className="w-14 h-14 rounded-full bg-ice flex items-center justify-center mb-5 group-hover:bg-blue/10 transition-colors">
-                {r.icon}
-              </div>
-              <h3 className="text-lg font-heading font-semibold text-navy mb-2">{r.title}</h3>
-              <p className="text-text text-sm font-body font-light leading-relaxed">{r.desc}</p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-12 h-px bg-blue" />
+              <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold">Cary, NC &middot; Est. 2003</p>
             </div>
-          ))}
+            <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-heading font-semibold text-navy leading-[1.1] mb-8">
+              Your Wellness<br />Deserves <span className="italic text-blue">Expert</span> Care.
+            </h2>
+            <p className="text-text text-lg font-body font-light leading-relaxed mb-6 max-w-lg">
+              Nirvelli is Cary&apos;s premier med spa — where medical-grade treatments meet personalized attention. Every service is delivered by licensed practitioners who measure outcomes, not just effort.
+            </p>
+            <p className="text-text/60 text-base font-body font-light leading-relaxed mb-10 max-w-lg">
+              From advanced facials and HydraFacials to therapeutic massage and acupuncture, we combine clinical expertise with a warm, welcoming environment you&apos;ll love coming back to.
+            </p>
+            <div className="flex items-center gap-3 text-sm font-body">
+              <div className="flex gap-0.5">{[1,2,3,4,5].map((i) => (<svg key={i} viewBox="0 0 24 24" width="16" height="16" fill="#c4a265"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>))}</div>
+              <span className="font-semibold text-navy">4.4 on Google</span>
+              <span className="text-text/30">|</span>
+              <span className="text-text/60 font-light">Trusted by 200+ Clients</span>
+            </div>
+          </div>
+          <div className="relative">
+            <div className="relative h-[520px] rounded-sm overflow-hidden">
+              <Image src="/therapist-chair.jpg" alt="Nirvelli Med Spa treatment room" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+            </div>
+            <div className="absolute -bottom-8 -left-8 bg-white shadow-xl p-8 hidden md:block">
+              <div className="flex gap-10">
+                {highlights.map((h) => (
+                  <div key={h.label} className="text-center">
+                    <p className="text-3xl font-heading font-bold text-blue">{h.num}</p>
+                    <p className="text-xs font-body font-semibold text-navy mt-1">{h.label}</p>
+                    <p className="text-[10px] font-body font-light text-text/50 mt-0.5">{h.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -277,7 +318,7 @@ function ServicesSection() {
       headline: "Clear, Healthy Skin That Glows",
       desc: "Treat acne, fine lines, sun damage, and uneven texture with clinically driven facials and HydraFacial technology.",
       emotion: "Feel confident in your skin again.",
-      image: "/facial-acupuncture.png",
+      image: "/hydrafacial.jpg",
       link: "/facials",
     },
     {
@@ -285,7 +326,7 @@ function ServicesSection() {
       headline: "Award-Winning Pain Relief & Relaxation",
       desc: "Swedish, deep tissue, hot stone, and medical massage from therapists voted Best in Cary 5 years running.",
       emotion: "Relieve tension and actually feel better.",
-      image: "/our-massage-therapist-and-specialist.png",
+      image: "/massage-hd.jpg",
       link: "/services",
     },
     {
@@ -301,7 +342,7 @@ function ServicesSection() {
       headline: "Advanced Skin Correction Technology",
       desc: "Laser hair removal, skin tightening, pigmentation correction, and vascular treatment with state-of-the-art technology.",
       emotion: "See real changes you can measure.",
-      image: "/notable-benefits-of-acupuncture.png",
+      image: "/laser-gentle-pro-max-hair-laser-removal.jpg",
       link: "/services",
     },
   ];
@@ -318,22 +359,20 @@ function ServicesSection() {
             Medical-grade aesthetic treatments and wellness services for Cary, Raleigh, Holly Springs, and Morrisville.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
-          {services.map((s) => (
-            <Link key={s.title} href={s.link} className="group bg-white overflow-hidden hover:shadow-xl transition-all duration-500 border border-transparent hover:border-blue/10">
-              <div className="relative h-64 sm:h-72 img-zoom">
-                <Image src={s.image} alt={s.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-5">
-                  <span className="bg-blue/90 text-white text-[10px] font-body font-bold tracking-wide uppercase px-3 py-1">{s.title}</span>
-                </div>
+        <div className="space-y-6">
+          {services.map((s, i) => (
+            <Link key={s.title} href={s.link} className={`group flex flex-col ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} bg-white overflow-hidden hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-blue/15`}>
+              <div className="relative w-full md:w-1/2 h-72 md:h-auto md:min-h-[320px] overflow-hidden">
+                <Image src={s.image} alt={s.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 50vw" />
+                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-navy/30 via-transparent to-transparent" />
               </div>
-              <div className="p-7">
-                <h3 className="text-xl font-heading font-semibold text-navy mb-2 group-hover:text-blue transition-colors">{s.headline}</h3>
-                <p className="text-text text-sm font-body font-light leading-relaxed mb-3">{s.desc}</p>
-                <p className="text-blue text-sm font-body font-medium italic mb-4">{s.emotion}</p>
-                <span className="text-blue text-xs tracking-elegant uppercase font-body font-bold inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                  Learn More <ArrowRight size={12} />
+              <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                <span className="text-blue text-[10px] tracking-luxe uppercase font-body font-bold mb-3">{s.title}</span>
+                <h3 className="text-2xl md:text-3xl font-heading font-semibold text-navy mb-4 group-hover:text-blue transition-colors leading-snug">{s.headline}</h3>
+                <p className="text-text text-sm font-body font-light leading-relaxed mb-4">{s.desc}</p>
+                <p className="text-blue/80 text-sm font-body font-medium italic mb-6">{s.emotion}</p>
+                <span className="text-blue text-xs tracking-elegant uppercase font-body font-bold inline-flex items-center gap-1.5 group-hover:gap-3 transition-all">
+                  Explore Treatment <ArrowRight size={14} />
                 </span>
               </div>
             </Link>
@@ -344,44 +383,45 @@ function ServicesSection() {
   );
 }
 
-/* ─── WHAT TO EXPECT (CONVERSION BOOSTER) ─── */
+/* ─── WHAT TO EXPECT ─── */
 function WhatToExpect() {
   const section = useInView();
   const steps = [
-    { num: "01", icon: <Calendar size={24} className="text-blue" />, title: "Book Your Appointment", desc: "Choose your service and schedule online in under 60 seconds. Same-day availability." },
-    { num: "02", icon: <Eye size={24} className="text-blue" />, title: "Personalized Consultation", desc: "Your practitioner assesses your needs and creates a custom plan for your goals." },
-    { num: "03", icon: <Target size={24} className="text-blue" />, title: "Targeted Treatment", desc: "Receive your medical-grade treatment in a relaxing, professional environment." },
-    { num: "04", icon: <TrendingUp size={24} className="text-blue" />, title: "Real, Visible Results", desc: "Walk out looking and feeling better. See measurable improvement with each visit." },
+    { num: "01", title: "Book Online", desc: "Choose your service and schedule in under 60 seconds. Same-day spots available." },
+    { num: "02", title: "Consultation", desc: "Your practitioner creates a custom plan tailored to your goals." },
+    { num: "03", title: "Treatment", desc: "Relax while you receive your medical-grade treatment." },
+    { num: "04", title: "Results", desc: "Walk out looking and feeling noticeably better." },
   ];
 
   return (
-    <section className="py-28 bg-white">
-      <div ref={section.ref} className={`max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-        <div className="text-center mb-16">
-          <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold mb-4">Your Visit</p>
-          <h2 className="text-4xl md:text-[3.25rem] font-heading font-semibold text-navy mb-5 leading-tight">
-            What to <span className="italic text-blue">Expect</span>
-          </h2>
-          <p className="text-text text-base font-body font-light max-w-xl mx-auto leading-relaxed">
-            Your first visit is simple. No pressure, no surprises — just expert care designed around you.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {steps.map((step, i) => (
-            <div key={step.num} className="text-center relative">
-              <div className="text-6xl font-heading font-bold text-ice mb-4 leading-none">{step.num}</div>
-              <div className="w-14 h-14 rounded-full bg-ice flex items-center justify-center mx-auto mb-4 -mt-8 relative z-10">{step.icon}</div>
-              <h3 className="text-base font-heading font-semibold text-navy mb-2">{step.title}</h3>
-              <p className="text-text text-sm font-body font-light leading-relaxed">{step.desc}</p>
-              {i < 3 && <div className="hidden lg:block absolute top-8 -right-4 w-8 h-px bg-blue/20" />}
+    <section className="py-32 bg-white">
+      <div ref={section.ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
+          <div className="lg:col-span-2">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-px bg-blue" />
+              <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold">Your Visit</p>
             </div>
-          ))}
-        </div>
-        <div className="text-center mt-14">
-          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="group px-10 py-4 bg-blue text-white text-sm tracking-elegant uppercase font-body font-bold hover:bg-blue-dark transition-all duration-300 inline-flex items-center gap-2 pulse-cta">
-            Book Your First Visit <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </a>
-          <p className="text-text/50 text-xs font-body font-light mt-3">Takes less than 60 seconds. New clients start at $69.</p>
+            <h2 className="text-4xl md:text-5xl font-heading font-semibold text-navy leading-[1.1] mb-6">
+              Simple from<br />start to <span className="italic text-blue">finish</span>.
+            </h2>
+            <p className="text-text text-base font-body font-light leading-relaxed mb-10 max-w-sm">
+              No pressure, no surprises — just expert care designed around you.
+            </p>
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="group px-10 py-4 bg-navy text-white text-sm tracking-elegant uppercase font-body font-bold hover:bg-blue transition-all duration-300 inline-flex items-center gap-2">
+              Book Your First Visit <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </a>
+            <p className="text-text/40 text-xs font-body font-light mt-3">Online booking takes less than 60 seconds</p>
+          </div>
+          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {steps.map((step) => (
+              <div key={step.num} className="p-8 bg-ice rounded-xl hover:shadow-lg transition-all duration-300 group">
+                <span className="text-4xl font-heading font-bold text-blue/20 group-hover:text-blue/40 transition-colors">{step.num}</span>
+                <h3 className="text-lg font-heading font-semibold text-navy mt-3 mb-2">{step.title}</h3>
+                <p className="text-text text-sm font-body font-light leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -430,37 +470,39 @@ function NewClientOffer() {
 function ResultsSection() {
   const section = useInView();
   const results = [
-    { image: "/facial-acupuncture.png", title: "Facial Acupuncture", caption: "Natural anti-aging — reduced fine lines and improved skin tone after a series of treatments", outcome: "Firmer, more youthful-looking skin" },
-    { image: "/our-massage-therapist-and-specialist.png", title: "Deep Tissue Massage", caption: "Chronic tension relief and full-body relaxation from our award-winning massage therapists", outcome: "Pain relief that lasts" },
-    { image: "/acupuncture.png", title: "Acupuncture Treatment", caption: "Stress reduction, hormonal balance, and natural pain management through traditional techniques", outcome: "Restored balance and vitality" },
+    { image: "/hydrafacial-before-after.jpg", title: "HydraFacial", caption: "Visible improvement in skin texture, tone, and clarity — real client results", outcome: "Smoother, clearer skin" },
+    { image: "/blueberry-smoothie-peel-facial.jpg", title: "Clinical Peel", caption: "Targeting hyperpigmentation and uneven texture for lasting transformation", outcome: "Restored glow" },
+    { image: "/deep-tissue-massage.jpg", title: "Deep Tissue", caption: "Chronic tension relief from our award-winning massage therapists", outcome: "Lasting relief" },
   ];
 
   return (
-    <section className="py-28 bg-cream">
+    <section className="py-32 bg-cream">
       <div ref={section.ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-        <div className="text-center mb-16">
-          <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold mb-4">See the Difference</p>
-          <h2 className="text-4xl md:text-[3.25rem] font-heading font-semibold text-navy mb-5 leading-tight">
+        <div className="text-center mb-20">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-12 h-px bg-blue" />
+            <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold">See the Difference</p>
+            <div className="w-12 h-px bg-blue" />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-heading font-semibold text-navy mb-5 leading-tight">
             Real Client <span className="italic text-blue">Results</span>
           </h2>
-          <p className="text-text text-base font-body font-light max-w-xl mx-auto leading-relaxed">
-            Real treatments. Real people. Real outcomes from over 20 years of clinical experience.
+          <p className="text-text text-base font-body font-light max-w-md mx-auto leading-relaxed">
+            Real treatments. Real people. Over 20 years of clinical experience.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {results.map((r) => (
-            <div key={r.title} className="bg-white overflow-hidden group hover:shadow-xl transition-all duration-500">
-              <div className="relative h-64 img-zoom">
-                <Image src={r.image} alt={r.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/50 via-transparent to-transparent" />
-                <div className="absolute bottom-3 left-4">
-                  <span className="bg-white/90 backdrop-blur-sm text-navy text-[10px] font-body font-bold tracking-wide uppercase px-3 py-1">{r.title}</span>
-                </div>
+            <div key={r.title} className="group cursor-pointer">
+              <div className="relative h-80 rounded-xl overflow-hidden mb-5">
+                <Image src={r.image} alt={r.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
-              <div className="p-6">
-                <p className="text-sm font-body font-light text-text leading-relaxed mb-3">{r.caption}</p>
-                <p className="text-blue text-sm font-body font-bold flex items-center gap-2">
-                  <CheckCircle size={14} /> {r.outcome}
+              <div>
+                <p className="text-blue text-[10px] tracking-luxe uppercase font-body font-bold mb-1">{r.title}</p>
+                <p className="text-sm font-body font-light text-text leading-relaxed mb-2">{r.caption}</p>
+                <p className="text-navy text-sm font-body font-semibold flex items-center gap-2">
+                  <CheckCircle size={13} className="text-blue" /> {r.outcome}
                 </p>
               </div>
             </div>
@@ -475,45 +517,56 @@ function ResultsSection() {
 function AboutSection() {
   const section = useInView();
   return (
-    <section className="py-28 bg-white">
+    <section className="py-32 bg-white">
       <div ref={section.ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div className="relative">
-            <div className="relative h-[500px] img-zoom rounded-sm overflow-hidden">
-              <Image src="/staff.png" alt="Nirvelli Med Spa team in Cary NC" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+            <div className="relative h-[560px] rounded-xl overflow-hidden">
+              <Image src="/team-pic.jpg" alt="Nirvelli Med Spa team in Cary NC" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
-            <div className="absolute -bottom-6 -right-6 bg-navy text-white p-6 hidden md:block shadow-xl">
-              <p className="text-3xl font-heading font-bold text-blue">20+</p>
-              <p className="text-xs font-body font-light tracking-wide uppercase">Years Serving Cary</p>
+            <div className="absolute -bottom-6 -right-6 bg-white shadow-2xl p-8 rounded-xl hidden md:block border border-gray-100">
+              <div className="flex items-center gap-6">
+                <div className="text-center">
+                  <p className="text-3xl font-heading font-bold text-blue">20+</p>
+                  <p className="text-[10px] font-body font-medium tracking-wide uppercase text-text/60">Years</p>
+                </div>
+                <div className="w-px h-12 bg-gray-200" />
+                <div className="text-center">
+                  <p className="text-3xl font-heading font-bold text-blue">5x</p>
+                  <p className="text-[10px] font-body font-medium tracking-wide uppercase text-text/60">Award Winner</p>
+                </div>
+              </div>
             </div>
           </div>
           <div>
-            <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold mb-4">About Nirvelli</p>
-            <h2 className="text-4xl md:text-[3.25rem] font-heading font-semibold text-navy mb-6 leading-tight">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-px bg-blue" />
+              <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold">Our Story</p>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-heading font-semibold text-navy mb-8 leading-[1.1]">
               Award-Winning Care<br />Since <span className="italic text-blue">2003</span>
             </h2>
-            <div className="section-divider mb-6" />
-            <p className="text-text text-base font-body font-light leading-relaxed mb-4 max-w-lg">
-              <strong className="text-navy font-medium">Nirvelli</strong> — meaning &ldquo;Water Child&rdquo; from Cherokee origin — was founded with a vision to blend clinical expertise with natural healing. For over two decades, we&apos;ve been Cary&apos;s trusted destination for medical-grade aesthetics and wellness.
+            <p className="text-text text-lg font-body font-light leading-relaxed mb-5 max-w-lg">
+              <strong className="text-navy font-medium">Nirvelli</strong> — meaning &ldquo;Water Child&rdquo; from Cherokee origin — blends clinical expertise with natural healing. For over two decades, we&apos;ve been Cary&apos;s trusted destination for results-driven wellness.
             </p>
-            <p className="text-text text-base font-body font-light leading-relaxed mb-6 max-w-lg">
+            <p className="text-text/60 text-base font-body font-light leading-relaxed mb-10 max-w-lg">
               Founded by Dr. Heather and Dr. David Sefried, our med spa brings together licensed chiropractors, certified aestheticians, and award-winning massage therapists under one roof.
             </p>
-            <div className="space-y-3 mb-8">
+            <div className="grid grid-cols-2 gap-4 mb-10">
               {[
-                "5x Cary Living Diamond Award — \"Favorite Place to Get Pampered\"",
-                "Voted Best Spa & Best Massage Therapist by Cary News",
-                "Licensed chiropractors and medical professionals on staff",
-                "Serving Cary, Raleigh, Holly Springs & Morrisville",
+                "Diamond Award Winner",
+                "Best Spa in Cary",
+                "Licensed Practitioners",
+                "Serving the Triangle",
               ].map((item) => (
-                <div key={item} className="flex items-start gap-3">
-                  <CheckCircle size={16} className="text-blue shrink-0 mt-0.5" />
-                  <span className="text-sm font-body font-light text-charcoal">{item}</span>
+                <div key={item} className="flex items-center gap-2.5">
+                  <CheckCircle size={15} className="text-blue shrink-0" />
+                  <span className="text-sm font-body text-charcoal">{item}</span>
                 </div>
               ))}
             </div>
-            <Link href="/about" className="group inline-flex items-center gap-2 text-blue text-sm font-body font-bold hover:text-blue-dark transition-colors">
-              Read Our Full Story <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            <Link href="/about" className="group inline-flex items-center gap-2 px-8 py-3.5 bg-navy text-white text-xs tracking-elegant uppercase font-body font-bold hover:bg-blue transition-all duration-300">
+              Our Full Story <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
@@ -541,34 +594,38 @@ function TeamSection() {
     {
       name: "Dr. Ed Hagerich",
       title: "D.C. — Chiropractor & Specialist",
-      image: "/staff.png",
+      image: "/staff3.jpg",
       bio: "Deep expertise in spinal health, pain management, and integrative wellness. Focused on comprehensive musculoskeletal care and holistic recovery.",
     },
   ];
 
   return (
-    <section className="py-28 bg-ice">
+    <section className="py-32 bg-ice">
       <div ref={section.ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-        <div className="text-center mb-16">
-          <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold mb-4">Our Experts</p>
-          <h2 className="text-4xl md:text-[3.25rem] font-heading font-semibold text-navy mb-5 leading-tight">
+        <div className="text-center mb-20">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-12 h-px bg-blue" />
+            <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold">Our Experts</p>
+            <div className="w-12 h-px bg-blue" />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-heading font-semibold text-navy mb-5 leading-tight">
             Meet the <span className="italic text-blue">Team</span>
           </h2>
-          <p className="text-text text-base font-body font-light max-w-xl mx-auto leading-relaxed">
-            Licensed professionals with decades of combined experience dedicated to your wellness and results.
+          <p className="text-text text-base font-body font-light max-w-md mx-auto leading-relaxed">
+            Licensed professionals dedicated to your wellness and results.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {team.map((member) => (
-            <div key={member.name} className="bg-white group hover:shadow-xl transition-all duration-500 overflow-hidden">
-              <div className="relative h-72 img-zoom">
-                <Image src={member.image} alt={member.name} fill className="object-cover object-top" sizes="(max-width: 768px) 100vw, 33vw" />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent" />
+            <div key={member.name} className="group">
+              <div className="relative h-80 rounded-xl overflow-hidden mb-6">
+                <Image src={member.image} alt={member.name} fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
-              <div className="p-7 text-center">
+              <div className="text-center">
                 <h3 className="text-xl font-heading font-semibold text-navy mb-1">{member.name}</h3>
                 <p className="text-blue text-xs tracking-elegant uppercase font-body font-bold mb-3">{member.title}</p>
-                <p className="text-text text-sm font-body font-light leading-relaxed">{member.bio}</p>
+                <p className="text-text text-sm font-body font-light leading-relaxed max-w-xs mx-auto">{member.bio}</p>
               </div>
             </div>
           ))}
@@ -590,8 +647,8 @@ const reviews = [
 function TestimonialsSection() {
   const section = useInView();
   return (
-    <section className="py-28 bg-white overflow-hidden">
-      <div ref={section.ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+    <section className="py-28 bg-white">
+      <div ref={section.ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <div className="text-center mb-14">
           <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold mb-4">Real Reviews</p>
           <h2 className="text-4xl md:text-[3.25rem] font-heading font-semibold text-navy mb-5 leading-tight">What Our Clients <span className="italic text-blue">Say</span></h2>
@@ -602,15 +659,39 @@ function TestimonialsSection() {
           </div>
           <p className="text-navy text-sm font-body font-semibold">Trusted by 200+ clients in Cary, NC</p>
         </div>
-        <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide" style={{ scrollbarWidth: "none" }}>
-          {reviews.map((r, i) => (
-            <div key={i} className="shrink-0 w-[340px] sm:w-[440px] bg-ice p-8 sm:p-10 snap-center border border-transparent hover:border-blue/10 transition-all">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {reviews.slice(0, 3).map((r, i) => (
+            <div key={i} className="bg-ice p-8 border border-transparent hover:border-blue/10 hover:shadow-lg transition-all duration-300">
               <div className="flex gap-0.5 mb-5">{Array.from({ length: r.stars }, (_, j) => (<svg key={j} viewBox="0 0 24 24" width="18" height="18" fill="#c4a265"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>))}</div>
-              <p className="text-lg font-body font-light text-charcoal leading-relaxed mb-6">
+              <p className="text-base font-body font-light text-charcoal leading-relaxed mb-6">
                 &ldquo;{r.text.split(r.highlight).map((part, idx) => (
                   <span key={idx}>
                     {part}
-                    {idx === 0 && <strong className="text-navy font-bold text-xl">{r.highlight}</strong>}
+                    {idx === 0 && <strong className="text-navy font-bold">{r.highlight}</strong>}
+                  </span>
+                ))}&rdquo;
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-navy flex items-center justify-center">
+                  <span className="text-xs font-heading font-semibold text-white">{r.name.split(" ").map(n => n[0]).join("")}</span>
+                </div>
+                <div>
+                  <p className="text-sm font-body font-bold text-navy">{r.name}</p>
+                  <p className="text-[11px] font-body font-light text-text">{r.service}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 max-w-4xl mx-auto">
+          {reviews.slice(3).map((r, i) => (
+            <div key={i} className="bg-ice p-8 border border-transparent hover:border-blue/10 hover:shadow-lg transition-all duration-300">
+              <div className="flex gap-0.5 mb-5">{Array.from({ length: r.stars }, (_, j) => (<svg key={j} viewBox="0 0 24 24" width="18" height="18" fill="#c4a265"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>))}</div>
+              <p className="text-base font-body font-light text-charcoal leading-relaxed mb-6">
+                &ldquo;{r.text.split(r.highlight).map((part, idx) => (
+                  <span key={idx}>
+                    {part}
+                    {idx === 0 && <strong className="text-navy font-bold">{r.highlight}</strong>}
                   </span>
                 ))}&rdquo;
               </p>
@@ -635,9 +716,16 @@ function TestimonialsSection() {
 function SpaClubSection() {
   const section = useInView();
   return (
-    <section className="py-24 bg-navy">
-      <div ref={section.ref} className={`max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+    <section className="py-24 bg-navy relative overflow-hidden">
+      <div className="absolute inset-0">
+        <Image src="/mint-hot-stone-massage.jpg" alt="" fill className="object-cover opacity-15" sizes="100vw" />
+      </div>
+      <div ref={section.ref} className={`relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-10 md:p-14 flex flex-col lg:flex-row items-center gap-10">
+          <div className="relative hidden lg:block w-64 h-80 shrink-0 rounded-sm overflow-hidden">
+            <Image src="/facial2.jpg" alt="Premium spa treatment" fill className="object-cover" sizes="256px" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent" />
+          </div>
           <div className="flex-1 text-center lg:text-left">
             <Award className="text-gold mb-4 mx-auto lg:mx-0" size={32} />
             <h2 className="text-3xl md:text-4xl font-heading font-semibold text-white mb-3">Nirvelli Spa Club</h2>
@@ -666,66 +754,54 @@ function SpaClubSection() {
   );
 }
 
-/* ─── RESOURCES ─── */
-function ResourcesSection() {
-  return (
-    <section className="py-20 bg-cream">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
-          <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold mb-4">Downloads</p>
-          <h2 className="text-3xl md:text-4xl font-heading font-semibold text-navy">Patient Resources</h2>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
-          <a href="https://www.nirvelli.com/wp-content/uploads/Cosmetic-Patient-Consultation-Form.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 bg-white p-5 border border-gray-100 hover:border-blue/30 hover:shadow-md transition-all group">
-            <div className="w-12 h-12 rounded-full bg-ice flex items-center justify-center shrink-0 group-hover:bg-blue/10 transition-colors">
-              <Download size={20} className="text-blue" />
-            </div>
-            <div>
-              <p className="text-sm font-body font-semibold text-navy group-hover:text-blue transition-colors">Cosmetic Patient Consultation Form</p>
-              <p className="text-xs font-body font-light text-text">PDF Download</p>
-            </div>
-          </a>
-          <a href="https://www.nirvelli.com/wp-content/uploads/Cookbook-Purification.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 bg-white p-5 border border-gray-100 hover:border-blue/30 hover:shadow-md transition-all group">
-            <div className="w-12 h-12 rounded-full bg-ice flex items-center justify-center shrink-0 group-hover:bg-blue/10 transition-colors">
-              <Download size={20} className="text-blue" />
-            </div>
-            <div>
-              <p className="text-sm font-body font-semibold text-navy group-hover:text-blue transition-colors">Purification Cookbook</p>
-              <p className="text-xs font-body font-light text-text">PDF Download</p>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ─── LOCATION ─── */
 function LocationSection() {
   return (
-    <section className="py-28 bg-white">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold mb-4">Visit Us</p>
-          <h2 className="text-4xl md:text-[3.25rem] font-heading font-semibold text-navy leading-tight">
-            Located in <span className="italic text-blue">Cary, NC</span>
-          </h2>
+    <section className="py-32 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
+          <div className="lg:col-span-2">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-px bg-blue" />
+              <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold">Visit Us</p>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-heading font-semibold text-navy leading-[1.1] mb-10">
+              Located in<br /><span className="italic text-blue">Cary, NC</span>
+            </h2>
+            <div className="space-y-8">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-ice flex items-center justify-center shrink-0">
+                  <MapPin size={18} className="text-blue" />
+                </div>
+                <div>
+                  <p className="text-sm font-body font-semibold text-navy mb-0.5">Address</p>
+                  <p className="text-sm font-body font-light text-text">151 Quarrystone Circle, Suite 116<br />Cary, NC 27519</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-ice flex items-center justify-center shrink-0">
+                  <Phone size={18} className="text-blue" />
+                </div>
+                <div>
+                  <p className="text-sm font-body font-semibold text-navy mb-0.5">Phone</p>
+                  <a href={PHONE_HREF} className="text-sm font-body font-light text-text hover:text-blue transition-colors">{PHONE}</a>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-ice flex items-center justify-center shrink-0">
+                  <Clock size={18} className="text-blue" />
+                </div>
+                <div>
+                  <p className="text-sm font-body font-semibold text-navy mb-0.5">Hours</p>
+                  <p className="text-sm font-body font-light text-text">Mon–Fri: 7am–7pm<br />Sat: 9am–4pm</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="lg:col-span-3">
+            <iframe src="https://www.google.com/maps?q=151+Quarrystone+Circle+Suite+116+Cary+NC+27519&output=embed" className="w-full h-[450px] border-0 rounded-xl shadow-lg" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Nirvelli Med Spa - Cary NC Location" />
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          <div className="text-center">
-            <MapPin className="mx-auto text-blue mb-3" size={24} />
-            <p className="text-sm font-body font-light text-text">151 Quarrystone Circle, Suite 116<br />Cary, NC 27519</p>
-          </div>
-          <div className="text-center">
-            <Phone className="mx-auto text-blue mb-3" size={24} />
-            <a href={PHONE_HREF} className="text-base font-body font-semibold text-navy hover:text-blue transition-colors">{PHONE}</a>
-          </div>
-          <div className="text-center">
-            <Clock className="mx-auto text-blue mb-3" size={24} />
-            <p className="text-sm font-body font-light text-text">Mon–Fri: 7am–7pm<br />Sat: 9am–4pm</p>
-          </div>
-        </div>
-        <iframe src="https://www.google.com/maps?q=151+Quarrystone+Circle+Suite+116+Cary+NC+27519&output=embed" className="w-full h-72 md:h-96 border-0 grayscale hover:grayscale-0 transition-all duration-500" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Nirvelli Med Spa - Cary NC Location" />
       </div>
     </section>
   );
@@ -746,11 +822,15 @@ const faqs = [
 function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   return (
-    <section className="py-28 bg-ice">
+    <section className="py-32 bg-ice">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold mb-4">Common Questions</p>
-          <h2 className="text-4xl md:text-[3.25rem] font-heading font-semibold text-navy leading-tight">
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-12 h-px bg-blue" />
+            <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold">Common Questions</p>
+            <div className="w-12 h-px bg-blue" />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-heading font-semibold text-navy leading-tight">
             Frequently <span className="italic text-blue">Asked</span>
           </h2>
         </div>
@@ -776,26 +856,36 @@ function FAQSection() {
 function FinalCTA() {
   const section = useInView();
   return (
-    <section className="relative py-36 bg-navy overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
-        <Image src="/hero-2.jpg" alt="" fill className="object-cover" sizes="100vw" />
-      </div>
-      <div className="absolute inset-0 bg-navy/90" />
-      <div ref={section.ref} className={`relative z-10 max-w-3xl mx-auto px-4 text-center transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-semibold text-white mb-6 leading-tight">Ready to See <span className="italic text-blue">Results</span>?</h2>
-        <p className="text-white/60 text-lg font-body font-light mb-12 max-w-lg mx-auto leading-relaxed">
-          Book your appointment today. Experience why Nirvelli has been Cary&apos;s most trusted med spa for over 20 years.
-        </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <div className="text-center">
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="group px-12 py-5 bg-blue text-white text-sm tracking-elegant uppercase font-body font-bold hover:bg-blue-dark transition-all duration-300 inline-flex items-center gap-2 pulse-cta">
-              Book Appointment <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-            <p className="text-white/30 text-[11px] font-body font-light mt-2">Takes less than 60 seconds</p>
+    <section className="relative overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
+        <div className="relative hidden lg:block">
+          <Image src="/hero-4.jpg" alt="Nirvelli Med Spa experience" fill className="object-cover" sizes="50vw" />
+        </div>
+        <div className="bg-navy py-24 lg:py-32 px-8 md:px-16 lg:px-20 flex items-center relative">
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle at 30% 50%, rgba(46,163,242,0.4) 0%, transparent 50%)" }} />
           </div>
-          <a href={PHONE_HREF} className="px-12 py-5 border border-white/30 text-white text-sm tracking-elegant uppercase font-body font-light hover:border-blue hover:text-blue transition-all duration-300 inline-flex items-center gap-2">
-            <Phone size={16} /> Call {PHONE}
-          </a>
+          <div ref={section.ref} className={`relative z-10 transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-12 h-px bg-blue" />
+              <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold">Start Today</p>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-heading font-semibold text-white mb-6 leading-[1.1]">
+              Ready to See<br /><span className="italic text-blue">Results</span>?
+            </h2>
+            <p className="text-white/50 text-lg font-body font-light mb-10 max-w-md leading-relaxed">
+              Experience why Nirvelli has been Cary&apos;s most trusted med spa for over 20 years.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="group px-10 py-4 bg-blue text-white text-sm tracking-elegant uppercase font-body font-bold hover:bg-blue-dark transition-all duration-300 inline-flex items-center gap-2">
+                Book Appointment <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a href={PHONE_HREF} className="px-10 py-4 border border-white/20 text-white text-sm tracking-elegant uppercase font-body font-light hover:border-blue hover:text-blue transition-all duration-300 inline-flex items-center gap-2">
+                <Phone size={16} /> {PHONE}
+              </a>
+            </div>
+            <p className="text-white/25 text-xs font-body font-light mt-4">Online booking takes less than 60 seconds</p>
+          </div>
         </div>
       </div>
     </section>
@@ -850,7 +940,6 @@ export default function Home() {
       <TeamSection />
       <TestimonialsSection />
       <SpaClubSection />
-      <ResourcesSection />
       <LocationSection />
       <FAQSection />
       <FinalCTA />

@@ -69,6 +69,7 @@ export default function Footer() {
                 { name: "Acupuncture", href: "/acupuncture" },
                 { name: "About Us", href: "/about" },
                 { name: "Spa Club - $89/mo", href: "/spa-club" },
+                { name: "Patient Resources", href: "/resources" },
                 { name: "Book Appointment", href: BOOKING_URL, external: true },
                 { name: "Contact", href: "/contact" },
               ].map((link) => (
