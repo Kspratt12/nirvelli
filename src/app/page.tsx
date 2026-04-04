@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Clock, MapPin, Phone, Star, Award, Sparkles, Heart, Shield, CheckCircle, Users, Calendar, Eye, Zap, Target, TrendingUp } from "lucide-react";
+import { ArrowRight, Clock, MapPin, Phone, Star, Award, Sparkles, Shield, CheckCircle, Calendar } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const BOOKING_URL = "https://clients.mindbodyonline.com/ASP/adm/adm_appt_search.asp?studioid=711769&prodGroupId=&page=&stype=&optForwardingLink=&nLgIn=&trn=0&lvl=&catid=&prodid=&date=4%2F4%2F2026&classid=0&view=&sSU=&qParam=&tg=&loc=1&vt=&justloggedin=&pMode=0";
@@ -282,9 +282,9 @@ function WhyChooseUs() {
             </p>
             <div className="flex items-center gap-3 text-sm font-body">
               <div className="flex gap-0.5">{[1,2,3,4,5].map((i) => (<svg key={i} viewBox="0 0 24 24" width="16" height="16" fill="#c4a265"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>))}</div>
-              <span className="font-semibold text-navy">4.4 on Google</span>
+              <span className="font-semibold text-navy">4.3 on Google</span>
               <span className="text-text/30">|</span>
-              <span className="text-text/60 font-light">Trusted by 200+ Clients</span>
+              <span className="text-text/60 font-light">Trusted by 114+ Clients</span>
             </div>
           </div>
           <div className="relative">
@@ -723,8 +723,8 @@ function TestimonialsSection() {
                   <span className="text-xs font-heading font-semibold text-white">{r.name.split(" ").map(n => n[0]).join("")}</span>
                 </div>
                 <div>
-                  <p className="text-sm font-body font-bold text-navy">{r.name}</p>
-                  <p className="text-[11px] font-body font-light text-text">{r.service}</p>
+                  <p className="text-sm font-body font-semibold text-white">{r.name}</p>
+                  <p className="text-[11px] font-body font-light text-white/40">{r.service}</p>
                 </div>
               </div>
             </div>
