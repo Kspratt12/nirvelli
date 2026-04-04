@@ -2,8 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Clock, MapPin, Phone, Star, Award, Sparkles, Heart, Shield } from "lucide-react";
+import { ArrowRight, Clock, MapPin, Phone, Star, Award, Sparkles, Heart, Shield, CheckCircle, Users, Calendar, Download, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+
+const BOOKING_URL = "https://clients.mindbodyonline.com/ASP/adm/adm_appt_search.asp?studioid=711769&prodGroupId=&page=&stype=&optForwardingLink=&nLgIn=&trn=0&lvl=&catid=&prodid=&date=4%2F4%2F2026&classid=0&view=&sSU=&qParam=&tg=&loc=1&vt=&justloggedin=&pMode=0";
+const PHONE = "(919) 297-0107";
+const PHONE_HREF = "tel:919-297-0107";
 
 function useInView(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
@@ -20,69 +24,58 @@ function useInView(threshold = 0.1) {
 
 const heroImages = ["/hero-1.jpg", "/hero-2.jpg", "/hero-3.jpg"];
 
-function HeroCarousel() {
+function HeroSection() {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % heroImages.length);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Rotating backgrounds */}
       {heroImages.map((img, i) => (
         <div
           key={i}
           className={`absolute inset-0 transition-opacity duration-[2000ms] ${i === current ? "opacity-100" : "opacity-0"}`}
         >
-          <Image src={img} alt="Nirvelli Med Spa" fill className="object-cover" priority={i === 0} quality={90} sizes="100vw" />
+          <Image src={img} alt="Nirvelli Med Spa treatments" fill className="object-cover" priority={i === 0} quality={90} sizes="100vw" />
         </div>
       ))}
-      <div className="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/60 to-navy/90" />
+      {/* Lighter overlay - not dark, but enough for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/10 to-navy/70" />
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto pt-16 sm:pt-20">
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto pt-16 sm:pt-20">
         <div className="animate-fade-in" style={{ animationDelay: "0.2s", opacity: 0 }}>
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-2.5 rounded-full mb-6 border border-white/10">
-            <Award size={12} className="text-gold" />
-            <span className="text-gold text-[9px] sm:text-[10px] font-body font-medium tracking-wide">5x Cary Living Diamond Award Winner</span>
+          <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm px-5 py-2.5 rounded-full mb-6 shadow-sm">
+            <Award size={14} className="text-gold" />
+            <span className="text-navy text-[10px] sm:text-xs font-body font-semibold tracking-wide">5x Cary Living Diamond Award Winner</span>
           </div>
         </div>
 
         <div className="animate-fade-in-up" style={{ animationDelay: "0.4s", opacity: 0 }}>
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-heading font-medium text-white mb-3" style={{ textShadow: "0 2px 30px rgba(0,0,0,0.3)" }}>
-            Nirvelli
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-heading font-medium text-white mb-4 leading-tight" style={{ textShadow: "0 2px 30px rgba(0,0,0,0.4)" }}>
+            Real Results.<br />
+            <span className="italic text-blue-light">Advanced Med Spa</span><br />
+            Treatments in Cary, NC
           </h1>
         </div>
 
-        <div className="animate-fade-in" style={{ animationDelay: "0.6s", opacity: 0 }}>
-          <p className="text-white/80 text-sm md:text-base tracking-luxe uppercase font-body font-light mb-8" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}>
-            Med Spa & Laser - Cary, NC
+        <div className="animate-fade-in" style={{ animationDelay: "0.7s", opacity: 0 }}>
+          <p className="text-white text-base md:text-lg font-body font-light max-w-2xl mx-auto leading-relaxed mb-10" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}>
+            Clear skin. Pain relief. Anti-aging results. Medical-grade treatments from experienced licensed practitioners serving Cary, Raleigh, and the Triangle since 2003.
           </p>
         </div>
 
-        <div className="animate-fade-in" style={{ animationDelay: "0.8s", opacity: 0 }}>
-          <div className="w-16 h-px bg-blue mx-auto mb-8" />
-          <p className="text-white/80 text-sm md:text-lg font-body font-light max-w-xl mx-auto leading-relaxed mb-10" style={{ textShadow: "0 1px 6px rgba(0,0,0,0.3)" }}>
-            Cary&apos;s premier med spa since 2003. Expert facials, massage, laser treatments, and injectables in a relaxing, award-winning environment.
-          </p>
-        </div>
-
-        <div className="animate-fade-in-up flex flex-col sm:flex-row items-center justify-center gap-4" style={{ animationDelay: "1s", opacity: 0 }}>
-          <Link href="/book" className="group px-8 py-3.5 bg-blue text-white text-xs tracking-elegant uppercase font-body font-medium hover:bg-blue-dark transition-all duration-300 flex items-center gap-2">
-            Book Appointment <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
-          <Link href="/services" className="px-8 py-3.5 border border-white/30 text-white text-xs tracking-elegant uppercase font-body font-light hover:border-blue hover:text-blue transition-all duration-300">
-            View Services
-          </Link>
-        </div>
-
-        <div className="animate-fade-in mt-12 flex items-center justify-center gap-2 text-white/60" style={{ animationDelay: "1.2s", opacity: 0 }}>
-          <Phone size={14} />
-          <a href="tel:919-238-5040" className="text-sm font-body font-light hover:text-blue transition-colors">(919) 238-5040</a>
+        <div className="animate-fade-in-up flex flex-col sm:flex-row items-center justify-center gap-4" style={{ animationDelay: "0.9s", opacity: 0 }}>
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="group px-10 py-4 bg-blue text-white text-sm tracking-elegant uppercase font-body font-semibold hover:bg-blue-dark transition-all duration-300 flex items-center gap-2 pulse-cta">
+            Book Appointment <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          </a>
+          <a href={PHONE_HREF} className="px-10 py-4 bg-white/90 backdrop-blur-sm text-navy text-sm tracking-elegant uppercase font-body font-medium hover:bg-white transition-all duration-300 flex items-center gap-2">
+            <Phone size={16} /> Call {PHONE}
+          </a>
         </div>
       </div>
 
@@ -92,9 +85,31 @@ function HeroCarousel() {
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={`h-1.5 rounded-full transition-all duration-500 ${i === current ? "bg-blue w-8" : "bg-white/30 w-1.5 hover:bg-white/50"}`}
+            className={`h-1.5 rounded-full transition-all duration-500 ${i === current ? "bg-blue w-8" : "bg-white/40 w-1.5 hover:bg-white/60"}`}
             aria-label={`Slide ${i + 1}`}
           />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function TrustBar() {
+  const items = [
+    { icon: <Calendar size={18} />, text: "Serving Cary Since 2003" },
+    { icon: <Award size={18} />, text: "Award-Winning Med Spa" },
+    { icon: <Star size={18} />, text: "5-Star Client Experience" },
+    { icon: <Shield size={18} />, text: "Licensed Practitioners" },
+  ];
+
+  return (
+    <section className="py-5 bg-navy border-b border-white/5">
+      <div className="max-w-6xl mx-auto px-4 flex flex-wrap items-center justify-center gap-6 md:gap-12">
+        {items.map((item, i) => (
+          <div key={i} className="flex items-center gap-2.5 text-white/90">
+            <span className="text-gold">{item.icon}</span>
+            <span className="text-xs sm:text-sm font-body font-medium tracking-wide">{item.text}</span>
+          </div>
         ))}
       </div>
     </section>
@@ -131,12 +146,6 @@ const quickBookCategories: Record<string, { name: string; price: string; duratio
     { name: "Brazilian (Female)", price: "$55", duration: "30 min" },
     { name: "Full Leg Wax", price: "$60", duration: "45 min" },
   ],
-  "Nails": [
-    { name: "Signature Manicure", price: "$45", duration: "30 min" },
-    { name: "Signature Pedicure", price: "$55", duration: "45 min" },
-    { name: "Dip Manicure", price: "$60", duration: "45 min" },
-    { name: "Hot Stone Pedicure", price: "$70", duration: "60 min" },
-  ],
 };
 
 function QuickBookWidget() {
@@ -147,11 +156,10 @@ function QuickBookWidget() {
   return (
     <section className="relative -mt-16 z-20 overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white shadow-2xl">
-          {/* Header with tabs */}
+        <div className="bg-white shadow-2xl rounded-sm">
           <div className="p-5 md:p-8 pb-0">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-5">
-              <h2 className="text-2xl md:text-3xl font-heading font-medium text-navy">Book your service</h2>
+              <h2 className="text-2xl md:text-3xl font-heading font-medium text-navy">Book Your Service</h2>
               <div className="flex flex-wrap gap-1.5">
                 {tabs.map(tab => (
                   <button
@@ -167,7 +175,6 @@ function QuickBookWidget() {
               </div>
             </div>
 
-            {/* Service options with radio buttons */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1 pb-5 border-b border-gray-200">
               {quickBookCategories[activeTab]?.map(service => (
                 <label
@@ -193,17 +200,16 @@ function QuickBookWidget() {
             </div>
           </div>
 
-          {/* Bottom bar */}
           <div className="p-5 md:p-8 pt-4">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex flex-wrap items-center gap-3 text-xs text-text font-body font-light">
                 <span className="flex items-center gap-1.5"><Clock size={12} className="text-blue" /> Mon-Fri: 7am-7pm</span>
                 <span className="flex items-center gap-1.5"><Clock size={12} className="text-blue" /> Sat: 9am-4pm</span>
-                <a href="tel:919-238-5040" className="flex items-center gap-1.5 hover:text-blue transition-colors"><Phone size={12} className="text-blue" /> (919) 238-5040</a>
+                <a href={PHONE_HREF} className="flex items-center gap-1.5 hover:text-blue transition-colors"><Phone size={12} className="text-blue" /> {PHONE}</a>
               </div>
-              <Link href="/book" className="shrink-0 px-10 py-3 bg-navy text-white text-xs tracking-elegant uppercase font-body font-medium hover:bg-blue transition-all duration-300">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 px-10 py-3 bg-navy text-white text-xs tracking-elegant uppercase font-body font-medium hover:bg-blue transition-all duration-300">
                 Book Now
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -212,44 +218,422 @@ function QuickBookWidget() {
   );
 }
 
-const services = [
-  { title: "Facials & Skin Care", desc: "Clinically driven customized treatments designed to improve your skin's vitality. Chemical peels, microdermabrasion, and advanced skin rejuvenation.", icon: <Sparkles size={28} className="text-blue" /> },
-  { title: "Massage Therapy", desc: "Award-winning massage therapy since 2003. Swedish, deep tissue, hot stone, aromatherapy, and medical massage.", icon: <Heart size={28} className="text-blue" /> },
-  { title: "Laser Treatments", desc: "State-of-the-art laser hair removal, skin tightening, hyperpigmentation treatment, and vascular laser for rosacea.", icon: <Star size={28} className="text-blue" /> },
-  { title: "Injectables & Fillers", desc: "Expert Botox, dermal fillers, and aesthetic injectables administered by certified medical professionals.", icon: <Shield size={28} className="text-blue" /> },
-];
+function WhyChooseUs() {
+  const section = useInView();
+  const reasons = [
+    { icon: <Calendar size={28} className="text-blue" />, title: "20+ Years of Excellence", desc: "Trusted by the Cary community since 2003 with thousands of successful treatments." },
+    { icon: <Shield size={28} className="text-blue" />, title: "Medical-Grade Treatments", desc: "Advanced technology and clinical-grade products for real, measurable results." },
+    { icon: <Users size={28} className="text-blue" />, title: "Licensed Specialists", desc: "Chiropractors, medical professionals, and certified aestheticians on staff." },
+    { icon: <Heart size={28} className="text-blue" />, title: "Personalized Care", desc: "Every treatment plan is customized to your unique skin, body, and wellness goals." },
+    { icon: <CheckCircle size={28} className="text-blue" />, title: "Proven Results", desc: "Real transformations backed by experience, not just promises. See it in our reviews." },
+    { icon: <Award size={28} className="text-blue" />, title: "Award-Winning Service", desc: "5x Cary Living Diamond Award. Voted Best Spa & Best Massage Therapist." },
+  ];
+
+  return (
+    <section className="py-20 bg-white">
+      <div ref={section.ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className="text-center mb-14">
+          <p className="text-blue text-xs tracking-luxe uppercase font-body font-medium mb-4">Why Nirvelli</p>
+          <h2 className="text-4xl md:text-5xl font-heading font-medium text-navy mb-4">
+            Why Clients <span className="italic text-blue">Trust Us</span>
+          </h2>
+          <p className="text-text text-base font-body font-light max-w-2xl mx-auto">
+            Over 20 years of delivering real results with medical-grade treatments and personalized care in Cary, NC.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {reasons.map((r) => (
+            <div key={r.title} className="p-6 border border-gray-100 hover:border-blue/20 hover:shadow-lg transition-all duration-300 group">
+              <div className="w-14 h-14 rounded-full bg-ice flex items-center justify-center mb-5 group-hover:bg-blue/10 transition-colors">
+                {r.icon}
+              </div>
+              <h3 className="text-lg font-heading font-medium text-navy mb-2">{r.title}</h3>
+              <p className="text-text text-sm font-body font-light leading-relaxed">{r.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ServicesSection() {
+  const section = useInView();
+  const services = [
+    {
+      title: "Medical-Grade Facials",
+      headline: "Clear, Healthy Skin That Glows",
+      desc: "Treat acne, fine lines, sun damage, and uneven texture with clinically driven facials and HydraFacial technology.",
+      image: "/facial-acupuncture.png",
+      link: "/facials",
+    },
+    {
+      title: "Therapeutic Massage",
+      headline: "Award-Winning Pain Relief & Relaxation",
+      desc: "Swedish, deep tissue, hot stone, and medical massage from therapists voted Best in Cary 5 years running.",
+      image: "/our-massage-therapist-and-specialist.png",
+      link: "/services",
+    },
+    {
+      title: "Acupuncture",
+      headline: "Natural Healing for Body & Mind",
+      desc: "Facial rejuvenation, weight loss support, stress relief, and pain management through traditional acupuncture.",
+      image: "/acupuncture.png",
+      link: "/acupuncture",
+    },
+    {
+      title: "Laser Treatments",
+      headline: "Advanced Skin Correction Technology",
+      desc: "Laser hair removal, skin tightening, pigmentation correction, and vascular treatment with state-of-the-art technology.",
+      image: "/notable-benefits-of-acupuncture.png",
+      link: "/services",
+    },
+  ];
+
+  return (
+    <section className="py-24 bg-ice">
+      <div ref={section.ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className="text-center mb-16">
+          <p className="text-blue text-xs tracking-luxe uppercase font-body font-medium mb-4">Our Treatments</p>
+          <h2 className="text-4xl md:text-5xl font-heading font-medium text-navy mb-4">
+            Results-Driven <span className="italic text-blue">Services</span>
+          </h2>
+          <p className="text-text text-base font-body font-light max-w-2xl mx-auto">
+            Medical-grade aesthetic treatments and wellness services for Cary, Raleigh, Holly Springs, and Morrisville.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {services.map((s) => (
+            <Link key={s.title} href={s.link} className="group bg-white overflow-hidden hover:shadow-xl transition-all duration-500 border border-transparent hover:border-blue/10">
+              <div className="relative h-64 img-zoom">
+                <Image src={s.image} alt={s.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-5">
+                  <span className="bg-blue/90 text-white text-[10px] font-body font-semibold tracking-wide uppercase px-3 py-1">{s.title}</span>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-heading font-medium text-navy mb-2 group-hover:text-blue transition-colors">{s.headline}</h3>
+                <p className="text-text text-sm font-body font-light leading-relaxed mb-4">{s.desc}</p>
+                <span className="text-blue text-xs tracking-elegant uppercase font-body font-semibold inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                  Learn More <ArrowRight size={12} />
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function NewClientOffer() {
+  const section = useInView();
+  return (
+    <section className="py-20 bg-navy relative overflow-hidden">
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, rgba(46,163,242,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(196,162,101,0.2) 0%, transparent 50%)" }} />
+      </div>
+      <div ref={section.ref} className={`relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-10 md:p-16">
+          <p className="text-gold text-xs tracking-luxe uppercase font-body font-semibold mb-4">New Client Special</p>
+          <h2 className="text-5xl md:text-7xl font-heading font-medium text-white mb-2">
+            <span className="gradient-text">$69</span>
+          </h2>
+          <p className="text-2xl md:text-3xl font-heading font-medium text-white mb-2">One Hour Massage or Facial</p>
+          <p className="text-white/50 text-sm font-body font-light mb-8 max-w-md mx-auto">
+            First-time clients only. Experience award-winning treatments at a special introductory rate.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="group px-10 py-4 bg-blue text-white text-sm tracking-elegant uppercase font-body font-semibold hover:bg-blue-dark transition-all duration-300 flex items-center gap-2">
+              Book Appointment Now <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </a>
+            <a href={PHONE_HREF} className="px-10 py-4 border border-white/30 text-white text-sm tracking-elegant uppercase font-body font-light hover:border-gold hover:text-gold transition-all duration-300 flex items-center gap-2">
+              <Phone size={16} /> Call {PHONE}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AboutSection() {
+  const section = useInView();
+  return (
+    <section className="py-24 bg-white">
+      <div ref={section.ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="relative">
+            <div className="relative h-[500px] img-zoom rounded-sm overflow-hidden">
+              <Image src="/staff.png" alt="Nirvelli Med Spa team" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+            </div>
+            <div className="absolute -bottom-6 -right-6 bg-navy text-white p-6 hidden md:block">
+              <p className="text-3xl font-heading font-medium text-blue">20+</p>
+              <p className="text-xs font-body font-light tracking-wide uppercase">Years Serving Cary</p>
+            </div>
+          </div>
+          <div>
+            <p className="text-blue text-xs tracking-luxe uppercase font-body font-medium mb-4">About Nirvelli</p>
+            <h2 className="text-4xl md:text-5xl font-heading font-medium text-navy mb-6">
+              Award-Winning Care<br />Since <span className="italic text-blue">2003</span>
+            </h2>
+            <div className="section-divider mb-6" />
+            <p className="text-text text-base font-body font-light leading-relaxed mb-4">
+              <strong className="text-navy font-medium">Nirvelli</strong> — meaning &ldquo;Water Child&rdquo; from Cherokee origin — was founded with a vision to blend clinical expertise with natural healing. For over two decades, we&apos;ve been Cary&apos;s trusted destination for medical-grade aesthetics and wellness.
+            </p>
+            <p className="text-text text-base font-body font-light leading-relaxed mb-6">
+              Founded by Dr. Heather and Dr. David Sefried, our med spa brings together licensed chiropractors, certified aestheticians, and award-winning massage therapists under one roof.
+            </p>
+            <div className="space-y-3 mb-8">
+              {[
+                "5x Cary Living Diamond Award — \"Favorite Place to Get Pampered\"",
+                "Voted Best Spa & Best Massage Therapist by Cary News",
+                "Licensed chiropractors and medical professionals on staff",
+                "Serving Cary, Raleigh, Holly Springs & Morrisville",
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3">
+                  <CheckCircle size={16} className="text-blue shrink-0 mt-0.5" />
+                  <span className="text-sm font-body font-light text-charcoal">{item}</span>
+                </div>
+              ))}
+            </div>
+            <Link href="/about" className="group inline-flex items-center gap-2 text-blue text-sm font-body font-semibold hover:text-blue-dark transition-colors">
+              Read Our Full Story <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TeamSection() {
+  const section = useInView();
+  const team = [
+    {
+      name: "Dr. Heather Sefried",
+      title: "D.C. — Owner & Founder",
+      image: "/dr-heather-2.png",
+      bio: "Doctor of Chiropractic from Sherman College. The driving force behind Nirvelli, Dr. Heather brings over 25 years of experience in holistic wellness and clinical aesthetics.",
+    },
+    {
+      name: "Dr. David Sefried",
+      title: "D.C. — Co-Owner & Chiropractor",
+      image: "/dr-david-sefried.png",
+      bio: "Specializing in chiropractic treatments and acupuncture through Preston Chiropractic. Expert in holistic pain management, facial acupuncture, and weight loss acupuncture.",
+    },
+    {
+      name: "Dr. Ed Hagerich",
+      title: "D.C. — Chiropractor & Specialist",
+      image: "/staff.png",
+      bio: "An experienced Doctor of Chiropractic bringing deep expertise in spinal health, pain management, and integrative wellness treatments to the Nirvelli team.",
+    },
+  ];
+
+  return (
+    <section className="py-24 bg-cream">
+      <div ref={section.ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className="text-center mb-16">
+          <p className="text-blue text-xs tracking-luxe uppercase font-body font-medium mb-4">Our Experts</p>
+          <h2 className="text-4xl md:text-5xl font-heading font-medium text-navy mb-4">
+            Meet the <span className="italic text-blue">Team</span>
+          </h2>
+          <p className="text-text text-base font-body font-light max-w-2xl mx-auto">
+            Licensed professionals with decades of combined experience dedicated to your wellness and results.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {team.map((member) => (
+            <div key={member.name} className="bg-white group hover:shadow-xl transition-all duration-500 overflow-hidden">
+              <div className="relative h-72 img-zoom">
+                <Image src={member.image} alt={member.name} fill className="object-cover object-top" sizes="(max-width: 768px) 100vw, 33vw" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent" />
+              </div>
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-heading font-medium text-navy mb-1">{member.name}</h3>
+                <p className="text-blue text-xs tracking-elegant uppercase font-body font-semibold mb-3">{member.title}</p>
+                <p className="text-text text-sm font-body font-light leading-relaxed">{member.bio}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 const reviews = [
-  { name: "Cheryl Breidenbach", stars: 5, text: "I just had one of the best massages of my life at Nirvelli Med Spa. The masseuse's name is Kristen Roth. I'm from NYC and have been to several different masseuses. She used just the right amount of pressure and found and released tendons that others have not been able to find. I walked out feeling totally refreshed.", service: "Massage" },
-  { name: "Roberto Client", stars: 5, text: "I went to Nirvelli for the first time this weekend and had a massage with Roberto. He was very professional and took time to get to know me prior to my service. It was one of the best massages I've had and I would definitely recommend him.", service: "Massage" },
-  { name: "Sarah M.", stars: 5, text: "The masseuses and aestheticians at Nirvelli are among the best in the Triangle. I've been coming here for years and the quality never drops.", service: "Massage & Facial" },
-  { name: "Jennifer L.", stars: 5, text: "Dr. Heather and her team are incredible. The laser treatments have completely transformed my skin. Worth every penny.", service: "Laser Treatment" },
-  { name: "Rachel T.", stars: 5, text: "I've been a Spa Club member for over a year. $89/month for a premium treatment is an absolute steal. Love this place.", service: "Spa Club Member" },
+  { name: "Cheryl Breidenbach", stars: 5, text: "I just had one of the best massages of my life at Nirvelli Med Spa. The masseuse Kristen Roth used just the right amount of pressure and found and released tendons that others have not been able to find. I walked out feeling totally refreshed.", highlight: "one of the best massages of my life", service: "Massage" },
+  { name: "Roberto's Client", stars: 5, text: "I went to Nirvelli for the first time this weekend and had a massage with Roberto. He was very professional and took time to get to know me prior to my service. It was one of the best massages I've had and I would definitely recommend him.", highlight: "one of the best massages I've had", service: "Massage" },
+  { name: "Sarah M.", stars: 5, text: "The masseuses and aestheticians at Nirvelli are among the best in the Triangle. I've been coming here for years and the quality never drops.", highlight: "among the best in the Triangle", service: "Massage & Facial" },
+  { name: "Jennifer L.", stars: 5, text: "Dr. Heather and her team are incredible. The laser treatments have completely transformed my skin. Worth every penny.", highlight: "completely transformed my skin", service: "Laser Treatment" },
+  { name: "Rachel T.", stars: 5, text: "I've been a Spa Club member for over a year. $89/month for a premium treatment is an absolute steal. Love this place.", highlight: "an absolute steal", service: "Spa Club Member" },
 ];
 
+function TestimonialsSection() {
+  const section = useInView();
+  return (
+    <section className="py-24 bg-white overflow-hidden">
+      <div ref={section.ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className="text-center mb-14">
+          <p className="text-blue text-xs tracking-luxe uppercase font-body font-medium mb-4">Real Reviews</p>
+          <h2 className="text-4xl md:text-5xl font-heading font-medium text-navy mb-4">What Our Clients <span className="italic text-blue">Say</span></h2>
+          <div className="flex items-center justify-center gap-2 mt-4">
+            <div className="flex gap-0.5">{[1,2,3,4,5].map((i) => (<svg key={i} viewBox="0 0 24 24" width="20" height="20" fill="#c4a265"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>))}</div>
+            <span className="text-base font-body font-semibold text-navy ml-1">4.4</span>
+            <span className="text-sm font-body font-light text-text">/ 200+ reviews</span>
+          </div>
+        </div>
+        <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide" style={{ scrollbarWidth: "none" }}>
+          {reviews.map((r, i) => (
+            <div key={i} className="shrink-0 w-[340px] sm:w-[420px] bg-ice p-8 snap-center border border-transparent hover:border-blue/10 transition-all">
+              <div className="flex gap-0.5 mb-4">{Array.from({ length: r.stars }, (_, j) => (<svg key={j} viewBox="0 0 24 24" width="16" height="16" fill="#c4a265"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>))}</div>
+              <p className="text-base font-body font-light text-charcoal/80 leading-relaxed mb-5">
+                &ldquo;{r.text.split(r.highlight).map((part, idx) => (
+                  <span key={idx}>
+                    {part}
+                    {idx === 0 && <strong className="text-navy font-semibold">{r.highlight}</strong>}
+                  </span>
+                ))}&rdquo;
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-navy/10 flex items-center justify-center">
+                  <span className="text-xs font-heading font-medium text-navy">{r.name.split(" ").map(n => n[0]).join("")}</span>
+                </div>
+                <div>
+                  <p className="text-sm font-body font-semibold text-navy">{r.name}</p>
+                  <p className="text-[11px] font-body font-light text-text">{r.service}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SpaClubSection() {
+  const section = useInView();
+  return (
+    <section className="py-20 bg-navy">
+      <div ref={section.ref} className={`max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-10 md:p-14 flex flex-col lg:flex-row items-center gap-10">
+          <div className="flex-1 text-center lg:text-left">
+            <Award className="text-gold mb-4 mx-auto lg:mx-0" size={32} />
+            <h2 className="text-3xl md:text-4xl font-heading font-medium text-white mb-3">Nirvelli Spa Club</h2>
+            <p className="text-white/60 text-sm font-body font-light max-w-md leading-relaxed mb-6">
+              Your choice of one premium treatment every month plus 15% off all products and spa add-on services. The best value in Cary for consistent self-care.
+            </p>
+            <div className="space-y-2 mb-6">
+              {["Monthly premium treatment of your choice", "15% off all products & add-ons", "Unused services roll over (up to 6 months)"].map((perk) => (
+                <div key={perk} className="flex items-center gap-2 justify-center lg:justify-start">
+                  <CheckCircle size={14} className="text-blue shrink-0" />
+                  <span className="text-sm font-body font-light text-white/80">{perk}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="text-center">
+            <p className="text-6xl md:text-7xl font-heading font-medium text-blue mb-1">$89</p>
+            <p className="text-white/40 text-sm font-body font-light mb-6">per month</p>
+            <Link href="/spa-club" className="group inline-flex items-center gap-2 px-8 py-3.5 bg-blue text-white text-xs tracking-elegant uppercase font-body font-semibold hover:bg-blue-dark transition-all duration-300">
+              View Membership <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ResourcesSection() {
+  return (
+    <section className="py-16 bg-cream">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-10">
+          <p className="text-blue text-xs tracking-luxe uppercase font-body font-medium mb-4">Downloads</p>
+          <h2 className="text-3xl md:text-4xl font-heading font-medium text-navy">Patient Resources</h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+          <a href="https://www.nirvelli.com/wp-content/uploads/Cosmetic-Patient-Consultation-Form.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 bg-white p-5 border border-gray-100 hover:border-blue/30 hover:shadow-md transition-all group">
+            <div className="w-12 h-12 rounded-full bg-ice flex items-center justify-center shrink-0 group-hover:bg-blue/10 transition-colors">
+              <Download size={20} className="text-blue" />
+            </div>
+            <div>
+              <p className="text-sm font-body font-semibold text-navy group-hover:text-blue transition-colors">Cosmetic Patient Consultation Form</p>
+              <p className="text-xs font-body font-light text-text">PDF Download</p>
+            </div>
+          </a>
+          <a href="https://www.nirvelli.com/wp-content/uploads/Cookbook-Purification.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 bg-white p-5 border border-gray-100 hover:border-blue/30 hover:shadow-md transition-all group">
+            <div className="w-12 h-12 rounded-full bg-ice flex items-center justify-center shrink-0 group-hover:bg-blue/10 transition-colors">
+              <Download size={20} className="text-blue" />
+            </div>
+            <div>
+              <p className="text-sm font-body font-semibold text-navy group-hover:text-blue transition-colors">Purification Cookbook</p>
+              <p className="text-xs font-body font-light text-text">PDF Download</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function LocationSection() {
+  return (
+    <section className="py-24 bg-white">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <p className="text-blue text-xs tracking-luxe uppercase font-body font-medium mb-4">Visit Us</p>
+          <h2 className="text-4xl md:text-5xl font-heading font-medium text-navy">
+            Located in <span className="italic text-blue">Cary, NC</span>
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+          <div className="text-center">
+            <MapPin className="mx-auto text-blue mb-3" size={22} />
+            <p className="text-sm font-body font-light text-text">151 Quarrystone Circle, Suite 116<br />Cary, NC 27519</p>
+          </div>
+          <div className="text-center">
+            <Phone className="mx-auto text-blue mb-3" size={22} />
+            <a href={PHONE_HREF} className="text-sm font-body font-medium text-navy hover:text-blue transition-colors">{PHONE}</a>
+          </div>
+          <div className="text-center">
+            <Clock className="mx-auto text-blue mb-3" size={22} />
+            <p className="text-sm font-body font-light text-text">Mon-Fri: 7am-7pm<br />Sat: 9am-4pm</p>
+          </div>
+        </div>
+        <iframe src="https://www.google.com/maps?q=151+Quarrystone+Circle+Suite+116+Cary+NC+27519&output=embed" className="w-full h-72 md:h-96 border-0 grayscale hover:grayscale-0 transition-all duration-500" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Nirvelli Med Spa - Cary NC Location" />
+      </div>
+    </section>
+  );
+}
+
 const faqs = [
-  { q: "What is the Nirvelli Spa Club?", a: "For $89/month, members receive one premium treatment of their choice plus 15% off all products and spa add-on services. The best value in Cary for consistent self-care." },
+  { q: "What is the Nirvelli Spa Club?", a: "For $89/month, members receive one premium treatment of their choice plus 15% off all products and spa add-on services. Unused treatments roll over for up to 6 months. The best value in Cary for consistent self-care." },
   { q: "Do I need a consultation before laser treatments?", a: "Yes, we offer complimentary consultations for all laser services to assess your skin type, discuss expectations, and create a personalized treatment plan." },
-  { q: "What makes Nirvelli different from other spas?", a: "We've been serving Cary since 2003 and are 5x Cary Living Diamond Award Winners. Our team includes licensed medical professionals, chiropractors, and certified aestheticians." },
-  { q: "Do you accept insurance?", a: "Med spa services are typically not covered by insurance. However, some chiropractic and medical massage services may be eligible. Contact us for details." },
-  { q: "What should I expect on my first visit?", a: "Arrive 10-15 minutes early to complete paperwork. Your provider will conduct a thorough consultation to understand your goals before beginning any treatment." },
-  { q: "What is your cancellation policy?", a: "We require 24 hours notice for cancellations. Late cancellations may be subject to a fee. We understand schedules change - just give us a call." },
+  { q: "What makes Nirvelli different from other med spas?", a: "We've been serving Cary since 2003 and are 5x Cary Living Diamond Award Winners. Our team includes licensed chiropractors, medical professionals, and certified aestheticians — we focus on measurable results, not just relaxation." },
+  { q: "Do you accept insurance?", a: "Med spa services are typically not covered by insurance. However, some chiropractic and medical massage services may be eligible. Contact us at (919) 297-0107 for details." },
+  { q: "What should I expect on my first visit?", a: "Arrive 10-15 minutes early to complete paperwork. Your provider will conduct a thorough consultation to understand your goals before beginning any treatment. New clients enjoy $69 facials and massages." },
+  { q: "What areas do you serve?", a: "We're located in Cary, NC and proudly serve clients from Raleigh, Holly Springs, Morrisville, Apex, and throughout the Triangle area." },
 ];
 
 function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-ice">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <p className="text-blue text-xs tracking-luxe uppercase font-body font-light mb-4">Common Questions</p>
+          <p className="text-blue text-xs tracking-luxe uppercase font-body font-medium mb-4">Common Questions</p>
           <h2 className="text-4xl md:text-5xl font-heading font-medium text-navy">
             Frequently <span className="italic text-blue">Asked</span>
           </h2>
         </div>
         <div className="space-y-3">
           {faqs.map((faq, i) => (
-            <div key={i} className="border border-gray-100 rounded-lg overflow-hidden">
+            <div key={i} className="bg-white border border-gray-100 rounded-lg overflow-hidden">
               <button onClick={() => setOpenIndex(openIndex === i ? null : i)} className="w-full flex items-center justify-between px-6 py-5 text-left group hover:bg-ice/50 transition-colors">
                 <span className="text-sm font-body font-medium text-charcoal pr-4">{faq.q}</span>
                 <span className={`text-blue text-xl font-light shrink-0 transition-transform duration-300 ${openIndex === i ? "rotate-45" : ""}`}>+</span>
@@ -265,183 +649,49 @@ function FAQSection() {
   );
 }
 
-export default function Home() {
-  const about = useInView();
-  const servicesSection = useInView();
-  const cta = useInView();
+function FinalCTA() {
+  const section = useInView();
+  return (
+    <section className="relative py-32 bg-navy overflow-hidden">
+      <div className="absolute inset-0 opacity-10">
+        <Image src="/hero-2.jpg" alt="" fill className="object-cover" sizes="100vw" />
+      </div>
+      <div className="absolute inset-0 bg-navy/90" />
+      <div ref={section.ref} className={`relative z-10 max-w-3xl mx-auto px-4 text-center transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <h2 className="text-4xl md:text-5xl font-heading font-medium text-white mb-6">Ready to See <span className="italic text-blue">Results</span>?</h2>
+        <p className="text-white/60 text-base font-body font-light mb-10 max-w-lg mx-auto">
+          Book your appointment today. Experience why Nirvelli has been Cary&apos;s most trusted med spa for over 20 years.
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="group px-10 py-4 bg-blue text-white text-sm tracking-elegant uppercase font-body font-semibold hover:bg-blue-dark transition-all duration-300 flex items-center gap-2 pulse-cta">
+            Book Appointment <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          </a>
+          <a href={PHONE_HREF} className="px-10 py-4 border border-white/30 text-white text-sm tracking-elegant uppercase font-body font-light hover:border-blue hover:text-blue transition-all duration-300 flex items-center gap-2">
+            <Phone size={16} /> Call {PHONE}
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
 
+export default function Home() {
   return (
     <>
-      {/* Hero with rotating images */}
-      <HeroCarousel />
-
-      {/* Quick Book Widget - overlaps hero */}
+      <HeroSection />
+      <TrustBar />
       <QuickBookWidget />
-
-      {/* Awards Banner */}
-      <section className="py-5 bg-gold">
-        <div className="max-w-6xl mx-auto px-4 flex flex-wrap items-center justify-center gap-6 md:gap-12">
-          {[
-            { icon: <Award size={16} />, text: "5x Diamond Award" },
-            { icon: <Star size={16} />, text: "Best Spa - Cary News" },
-            { icon: <Heart size={16} />, text: "Est. 2003" },
-            { icon: <Shield size={16} />, text: "200+ Reviews" },
-          ].map((item, i) => (
-            <div key={i} className="flex items-center gap-2 text-white">
-              {item.icon}
-              <span className="text-[10px] sm:text-xs font-body font-medium tracking-wide uppercase">{item.text}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* New Client Specials */}
-      <section className="py-14 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <p className="text-blue text-xs tracking-luxe uppercase font-body font-light mb-3">New Client Specials</p>
-            <h2 className="text-3xl md:text-4xl font-heading font-medium text-navy">First Time? We&apos;ve Got You.</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            <div className="bg-ice p-8 text-center border border-blue/10 hover:border-blue/30 transition-colors">
-              <p className="text-4xl font-heading font-medium text-blue mb-2">$69</p>
-              <p className="text-lg font-heading font-medium text-navy mb-1">One Hour Facial</p>
-              <p className="text-xs font-body font-light text-text">New clients only. 60 min customized facial.</p>
-            </div>
-            <div className="bg-ice p-8 text-center border border-blue/10 hover:border-blue/30 transition-colors">
-              <p className="text-4xl font-heading font-medium text-blue mb-2">$69</p>
-              <p className="text-lg font-heading font-medium text-navy mb-1">One Hour Massage</p>
-              <p className="text-xs font-body font-light text-text">New clients only. 60 min customized massage.</p>
-            </div>
-          </div>
-          <div className="text-center mt-8">
-            <a href="tel:919-238-5040" className="group inline-flex items-center gap-2 px-8 py-3 bg-navy text-white text-xs tracking-elegant uppercase font-body font-medium hover:bg-blue transition-all duration-300">
-              Book Your First Visit <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* About */}
-      <section className="py-24 bg-white">
-        <div ref={about.ref} className={`max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center transition-all duration-1000 ${about.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <p className="text-blue text-xs tracking-luxe uppercase font-body font-light mb-4">About Us</p>
-          <h2 className="text-4xl md:text-5xl font-heading font-medium text-navy mb-8">Welcome to Nirvelli</h2>
-          <div className="w-12 h-px bg-blue mx-auto mb-8" />
-          <p className="text-text text-lg md:text-xl font-heading font-light leading-relaxed max-w-3xl mx-auto mb-6">
-            Nirvelli - meaning &ldquo;Water Child&rdquo; - has been Cary&apos;s sanctuary for wellness and beauty since 2003. Founded by Dr. Heather and Dr. David Sefried, our med spa blends clinical expertise with a deeply relaxing spa experience.
-          </p>
-          <p className="text-text text-base font-body font-light leading-relaxed max-w-2xl mx-auto">
-            Voted &ldquo;Favorite Place to Get Pampered&rdquo; five years running by Cary Living Magazine.
-          </p>
-        </div>
-      </section>
-
-      {/* Services */}
-      <section className="py-24 bg-ice">
-        <div ref={servicesSection.ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${servicesSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <div className="text-center mb-16">
-            <p className="text-blue text-xs tracking-luxe uppercase font-body font-light mb-4">What We Offer</p>
-            <h2 className="text-4xl md:text-5xl font-heading font-medium text-navy">Our Services</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((s) => (
-              <Link key={s.title} href="/services" className="bg-white p-8 text-center group hover:shadow-xl transition-all duration-500 border border-transparent hover:border-blue/20">
-                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-ice flex items-center justify-center group-hover:bg-blue/10 transition-colors">{s.icon}</div>
-                <h3 className="text-xl font-heading font-medium text-navy mb-3">{s.title}</h3>
-                <p className="text-text text-sm font-body font-light leading-relaxed mb-6">{s.desc}</p>
-                <span className="text-blue text-xs tracking-elegant uppercase font-body font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">Learn More <ArrowRight size={12} /></span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Spa Club */}
-      <section className="py-20 bg-navy">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-10 md:p-14 text-center">
-            <Award className="mx-auto text-gold mb-6" size={32} />
-            <h2 className="text-3xl md:text-4xl font-heading font-medium text-white mb-4">Nirvelli Spa Club</h2>
-            <p className="text-5xl md:text-6xl font-heading font-medium text-blue mb-2">$89<span className="text-lg text-white/50">/month</span></p>
-            <p className="text-white/60 text-sm font-body font-light max-w-lg mx-auto mb-8 leading-relaxed">
-              Your choice of one premium treatment every month plus 15% off all products and spa add-on services.
-            </p>
-            <Link href="/spa-club" className="group inline-flex items-center gap-2 px-8 py-3.5 bg-blue text-white text-xs tracking-elegant uppercase font-body font-medium hover:bg-blue-dark transition-all duration-300">
-              Join the Club <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Reviews */}
-      <section className="py-24 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-blue text-xs tracking-luxe uppercase font-body font-light mb-4">What Our Clients Say</p>
-            <h2 className="text-4xl md:text-5xl font-heading font-medium text-navy mb-4">Client <span className="italic text-blue">Reviews</span></h2>
-            <div className="flex items-center justify-center gap-2 mt-4">
-              <div className="flex gap-0.5">{[1,2,3,4,5].map((i) => (<svg key={i} viewBox="0 0 24 24" width="18" height="18" fill="#2ea3f2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>))}</div>
-              <span className="text-sm font-body font-medium text-charcoal ml-1">4.4</span>
-              <span className="text-xs font-body font-light text-text">/ 200+ reviews</span>
-            </div>
-          </div>
-          <div className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide" style={{ scrollbarWidth: "none" }}>
-            {reviews.map((r, i) => (
-              <div key={i} className="shrink-0 w-80 sm:w-96 bg-ice p-7 snap-center">
-                <div className="flex gap-0.5 mb-3">{Array.from({ length: r.stars }, (_, j) => (<svg key={j} viewBox="0 0 24 24" width="14" height="14" fill="#2ea3f2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>))}</div>
-                <p className="text-sm font-body font-light text-charcoal/80 leading-relaxed mb-5 italic">&ldquo;{r.text}&rdquo;</p>
-                <p className="text-xs font-body font-medium text-navy">{r.name}</p>
-                <p className="text-[10px] font-body font-light text-text mt-0.5">{r.service}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Location */}
-      <section className="py-24 bg-ice">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="text-blue text-xs tracking-luxe uppercase font-body font-light mb-4">Visit Us</p>
-            <h2 className="text-4xl md:text-5xl font-heading font-medium text-navy">Find Us</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-            <div className="text-center">
-              <MapPin className="mx-auto text-blue mb-3" size={22} />
-              <p className="text-sm font-body font-light text-text">151 Quarrystone Circle, Suite 116<br />Cary, NC 27519</p>
-            </div>
-            <div className="text-center">
-              <Phone className="mx-auto text-blue mb-3" size={22} />
-              <a href="tel:919-238-5040" className="text-sm font-body font-light text-text hover:text-blue transition-colors">(919) 238-5040</a>
-            </div>
-            <div className="text-center">
-              <Clock className="mx-auto text-blue mb-3" size={22} />
-              <p className="text-sm font-body font-light text-text">Mon-Fri: 7am-7pm<br />Sat: 9am-4pm</p>
-            </div>
-          </div>
-          <iframe src="https://www.google.com/maps?q=151+Quarrystone+Circle+Suite+116+Cary+NC+27519&output=embed" className="w-full h-72 md:h-96 border-0 grayscale hover:grayscale-0 transition-all duration-500" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Nirvelli Med Spa Location" />
-        </div>
-      </section>
-
-      {/* FAQ */}
+      <WhyChooseUs />
+      <ServicesSection />
+      <NewClientOffer />
+      <AboutSection />
+      <TeamSection />
+      <TestimonialsSection />
+      <SpaClubSection />
+      <ResourcesSection />
+      <LocationSection />
       <FAQSection />
-
-      {/* CTA */}
-      <section className="relative py-32 bg-navy overflow-hidden">
-        <div ref={cta.ref} className={`relative z-10 max-w-3xl mx-auto px-4 text-center transition-all duration-1000 ${cta.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl md:text-5xl font-heading font-medium text-white mb-6">Ready to Feel Your Best?</h2>
-          <p className="text-white/60 text-base font-body font-light mb-10 max-w-lg mx-auto">Book your appointment today and experience why Nirvelli has been Cary&apos;s favorite spa for over 20 years.</p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/book" className="group px-10 py-4 bg-blue text-white text-xs tracking-elegant uppercase font-body font-medium hover:bg-blue-dark transition-all duration-300 flex items-center gap-2">
-              Book Now <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <a href="tel:919-238-5040" className="px-10 py-4 border border-white/30 text-white text-xs tracking-elegant uppercase font-body font-light hover:border-blue hover:text-blue transition-all duration-300">
-              Call (919) 238-5040
-            </a>
-          </div>
-        </div>
-      </section>
+      <FinalCTA />
     </>
   );
 }

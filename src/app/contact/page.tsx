@@ -33,7 +33,7 @@ export default function Contact() {
                 <div>
                   <h4 className="text-xs tracking-elegant uppercase font-body font-medium text-blue mb-3">Contact Us</h4>
                   <div className="space-y-3">
-                    <a href="tel:919-238-5040" className="flex items-center gap-3 text-sm font-body font-light text-text hover:text-blue transition-colors">
+                    <a href="tel:919-297-0107" className="flex items-center gap-3 text-sm font-body font-light text-text hover:text-blue transition-colors">
                       <Phone size={18} className="text-blue shrink-0" />(919) 238-5040
                     </a>
                     <a href="tel:919-297-0107" className="flex items-center gap-3 text-sm font-body font-light text-text hover:text-blue transition-colors">

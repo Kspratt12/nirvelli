@@ -12,7 +12,7 @@ function getDemoResponse(input: string): string {
     return "Our hours are:\n- Monday: 9am - 7pm\n- Tue-Thu: 7am - 7pm\n- Friday: 8am - 7pm\n- Saturday: 9am - 4pm\n- Sunday: Closed\n\nWould you like to book an appointment?";
 
   if (lower.includes("book") || lower.includes("appointment") || lower.includes("schedule"))
-    return "I'd love to help you book! You can:\n\n1. Use our [booking page](/book) to select a service, date, and time\n2. Call us at **(919) 238-5040**\n3. Email info@nirvelli.com\n\nNew clients get a **$69 facial or massage** on their first visit!";
+    return "I'd love to help you book! You can:\n\n1. Use our [booking page](/book) to schedule online\n2. Call us at **(919) 297-0107**\n3. Email info@nirvelli.com\n\nNew clients get a **$69 facial or massage** on their first visit!";
 
   if (lower.includes("price") || lower.includes("cost") || lower.includes("how much"))
     return "Here's an overview:\n\n**Facials:** $69-$325\n**HydraFacial:** $199-$325\n**Massage:** $69-$135\n**Botox:** $14/unit\n**Fillers:** $875-$1,200\n**Waxing:** $10-$70\n**Nails:** $40-$85\n\n**New clients:** $69 for your first facial or massage!\n**Spa Club:** $89/month for a monthly treatment + 15% off";
@@ -27,7 +27,7 @@ function getDemoResponse(input: string): string {
     return "Our injectables are administered by certified professionals under Dr. Hudak:\n\n- **Botox/Xeomin/Jeuveau:** $14/unit\n- **Restylane Kysse (lips):** $900\n- **Juvederm Voluma:** $1,100\n- **Sculptra:** $875 (lasts 7+ years!)\n- **Kybella (double chin):** $900\n- **Consultation:** $45\n\nJada Dillner, PA-C is available Saturdays!";
 
   if (lower.includes("club") || lower.includes("member") || lower.includes("$89"))
-    return "**Nirvelli Spa Club - $89/month:**\n\n- One premium treatment of your choice each month\n- 15% off all products and add-on services\n- Unused services roll over (up to 6 months)\n- Additional services at $89 each\n\nWe also have a **HydraFacial Club** at $150/month and $225/month.\n\nCall (919) 238-5040 to join!";
+    return "**Nirvelli Spa Club - $89/month:**\n\n- One premium treatment of your choice each month\n- 15% off all products and add-on services\n- Unused services roll over (up to 6 months)\n- Additional services at $89 each\n\nWe also have a **HydraFacial Club** at $150/month and $225/month.\n\nCall (919) 297-0107 to join!";
 
   if (lower.includes("wax"))
     return "Our waxing services using premium Mermaid Wax:\n\n- Upper Lip: $10\n- Brow: $18\n- Brow/Chin/Lip Trio: $35\n- Brazilian (Female): $55\n- Brazilian (Male): $70\n- Full Leg: $60\n- Back/Chest: $65";
@@ -36,19 +36,19 @@ function getDemoResponse(input: string): string {
     return "Nail services at Nirvelli:\n\n- Signature Manicure: $45\n- Signature Pedicure: $55\n- Dip Manicure: $60\n- Hot Stone Pedicure: $70\n- Deluxe Hot Stone Pedicure: $85\n- Gel X (Soft Tip): From $40\n\nClub members get manicures at $44.50!";
 
   if (lower.includes("location") || lower.includes("where") || lower.includes("address"))
-    return "We're at **151 Quarrystone Circle, Suite 116, Cary, NC 27519**\n\nOff of High House Rd & Davis Dr.\n\nCall: **(919) 238-5040**\nEmail: info@nirvelli.com";
+    return "We're at **151 Quarrystone Circle, Suite 116, Cary, NC 27519**\n\nOff of High House Rd & Davis Dr.\n\nCall: **(919) 297-0107**\nEmail: info@nirvelli.com";
 
   if (lower.includes("new") || lower.includes("first"))
-    return "Welcome! New clients enjoy special pricing:\n\n- **$69 One Hour Facial** (first visit)\n- **$69 One Hour Massage** (first visit)\n\nArrive 10-15 minutes early for paperwork. Your provider will start with a consultation to understand your goals.\n\nCall **(919) 238-5040** to book!";
+    return "Welcome! New clients enjoy special pricing:\n\n- **$69 One Hour Facial** (first visit)\n- **$69 One Hour Massage** (first visit)\n\nArrive 10-15 minutes early for paperwork. Your provider will start with a consultation to understand your goals.\n\nCall **(919) 297-0107** to book!";
 
   if (lower.includes("cancel"))
-    return "We require **24 hours notice** for cancellations. Late cancellations may be subject to a fee. We understand schedules change - just give us a call at (919) 238-5040.";
+    return "We require **24 hours notice** for cancellations. Late cancellations may be subject to a fee. We understand schedules change - just give us a call at (919) 297-0107.";
 
   if (lower.includes("hi") || lower.includes("hello") || lower.includes("hey"))
     return "Hello! Welcome to Nirvelli Med Spa & Laser - Cary's 5x Diamond Award winning spa since 2003! How can I help you today? I can assist with services, pricing, booking, or anything else.";
 
   if (lower.includes("thank"))
-    return "You're welcome! We look forward to seeing you at Nirvelli. Call **(919) 238-5040** anytime or visit our [booking page](/book).";
+    return "You're welcome! We look forward to seeing you at Nirvelli. Call **(919) 297-0107** anytime or visit our [booking page](/book).";
 
   return "I can help with:\n\n- **Services & Pricing** - facials, massage, injectables, waxing, nails\n- **Book an Appointment** - online or by phone\n- **New Client Specials** - $69 facial or massage\n- **Spa Club** - $89/month membership\n- **Hours & Location**\n\nWhat would you like to know?";
 }

@@ -165,7 +165,7 @@ function ServiceSection({ category, index }: { category: typeof serviceCategorie
         {category.services.map((service) => (
           <a
             key={service.name}
-            href="tel:919-238-5040"
+            href="tel:919-297-0107"
             className="flex items-start justify-between py-4 border-b border-gray-100 group hover:border-blue/30 transition-colors cursor-pointer gap-4"
           >
             <div className="flex-1">
@@ -227,7 +227,7 @@ export default function Services() {
           <h2 className="text-3xl font-heading font-medium text-white mb-6">Ready to Book?</h2>
           <p className="text-white/60 text-sm font-body font-light mb-8">Call us or visit to schedule your appointment.</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="tel:919-238-5040" className="group px-10 py-4 bg-blue text-white text-xs tracking-elegant uppercase font-body font-medium hover:bg-blue-dark transition-all duration-300 flex items-center gap-2">
+            <a href="tel:919-297-0107" className="group px-10 py-4 bg-blue text-white text-xs tracking-elegant uppercase font-body font-medium hover:bg-blue-dark transition-all duration-300 flex items-center gap-2">
               Call (919) 238-5040 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </a>
             <Link href="/book" className="px-10 py-4 border border-white/30 text-white text-xs tracking-elegant uppercase font-body font-light hover:border-blue hover:text-blue transition-all duration-300">

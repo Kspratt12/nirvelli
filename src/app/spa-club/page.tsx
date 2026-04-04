@@ -48,7 +48,7 @@ export default function SpaClub() {
               ))}
             </div>
 
-            <a href="tel:919-238-5040" className="block w-full py-4 bg-blue text-white text-xs tracking-elegant uppercase font-body font-medium hover:bg-blue-dark transition-all duration-300 text-center">
+            <a href="tel:919-297-0107" className="block w-full py-4 bg-blue text-white text-xs tracking-elegant uppercase font-body font-medium hover:bg-blue-dark transition-all duration-300 text-center">
               Call to Join - (919) 238-5040
             </a>
           </div>
@@ -85,7 +85,7 @@ export default function SpaClub() {
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-heading font-medium text-white mb-6">Ready to Join?</h2>
           <p className="text-white/60 text-sm font-body font-light mb-8">Call us today to start your Spa Club membership and make self-care a habit.</p>
-          <a href="tel:919-238-5040" className="group inline-flex items-center gap-2 px-10 py-4 bg-blue text-white text-xs tracking-elegant uppercase font-body font-medium hover:bg-blue-dark transition-all duration-300">
+          <a href="tel:919-297-0107" className="group inline-flex items-center gap-2 px-10 py-4 bg-blue text-white text-xs tracking-elegant uppercase font-body font-medium hover:bg-blue-dark transition-all duration-300">
             Call (919) 238-5040 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </a>
         </div>

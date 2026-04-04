@@ -4,12 +4,15 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Phone } from "lucide-react";
 
+const BOOKING_URL = "https://clients.mindbodyonline.com/ASP/adm/adm_appt_search.asp?studioid=711769&prodGroupId=&page=&stype=&optForwardingLink=&nLgIn=&trn=0&lvl=&catid=&prodid=&date=4%2F4%2F2026&classid=0&view=&sSU=&qParam=&tg=&loc=1&vt=&justloggedin=&pMode=0";
+
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
+  { name: "Facials", href: "/facials" },
+  { name: "Acupuncture", href: "/acupuncture" },
   { name: "Spa Club", href: "/spa-club" },
-  { name: "Book Now", href: "/book" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -27,7 +30,6 @@ export default function Navbar() {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass shadow-sm py-2" : "bg-transparent py-4"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo */}
           <Link href="/" className="flex items-center">
             <div>
               <h1 className={`font-heading text-xl md:text-2xl font-medium transition-colors duration-300 ${scrolled ? "text-navy" : "text-white"}`}>
@@ -39,29 +41,35 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-0.5">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className={`px-4 py-2 text-xs tracking-wide uppercase font-body font-light transition-all duration-300 hover:text-blue elegant-underline ${
+                className={`px-3 py-2 text-[11px] tracking-wide uppercase font-body font-light transition-all duration-300 hover:text-blue elegant-underline ${
                   scrolled ? "text-charcoal" : "text-white"
                 }`}
               >
                 {link.name}
               </Link>
             ))}
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-2 px-5 py-2 bg-blue text-white text-[11px] tracking-wide uppercase font-body font-semibold hover:bg-blue-dark transition-all duration-300"
+            >
+              Book Now
+            </a>
           </div>
 
-          {/* Phone + Mobile Toggle */}
           <div className="flex items-center gap-4">
             <a
-              href="tel:919-238-5040"
+              href="tel:919-297-0107"
               className={`hidden md:flex items-center gap-2 text-xs tracking-wide transition-colors duration-300 hover:text-blue ${scrolled ? "text-charcoal" : "text-white"}`}
             >
               <Phone size={14} />
-              (919) 238-5040
+              (919) 297-0107
             </a>
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -74,7 +82,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <div className={`lg:hidden fixed inset-0 top-0 bg-white z-40 transition-all duration-500 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
         <div className="flex flex-col h-full">
           <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
@@ -86,23 +93,30 @@ export default function Navbar() {
             </button>
           </div>
           <div className="flex-1 flex flex-col justify-center px-6 gap-2">
-            {navLinks.map((link, i) => (
+            {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className={`py-3 text-center text-sm tracking-elegant uppercase font-body font-light border transition-all duration-200 ${
-                  i === 0 ? "bg-navy text-white border-navy" : "text-charcoal border-gray-200 hover:border-navy"
-                }`}
+                className="py-3 text-center text-sm tracking-elegant uppercase font-body font-light text-charcoal border border-gray-200 hover:border-navy transition-all duration-200"
               >
                 {link.name}
               </Link>
             ))}
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
+              className="py-3 text-center text-sm tracking-elegant uppercase font-body font-semibold bg-blue text-white border border-blue"
+            >
+              Book Appointment
+            </a>
           </div>
           <div className="px-8 py-6 border-t border-gray-100">
-            <a href="tel:919-238-5040" className="flex items-center gap-2 text-sm text-blue">
+            <a href="tel:919-297-0107" className="flex items-center gap-2 text-sm text-blue font-medium">
               <Phone size={16} />
-              (919) 238-5040
+              (919) 297-0107
             </a>
           </div>
         </div>

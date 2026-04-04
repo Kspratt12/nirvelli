@@ -13,6 +13,7 @@
   --cream: #f9f7f4;
   --ice: #f0f6fc;
   --white: #ffffff;
+  --sage: #8fa98f;
 }
 
 @theme inline {
@@ -27,6 +28,7 @@
   --color-text: var(--text);
   --color-cream: var(--cream);
   --color-ice: var(--ice);
+  --color-sage: var(--sage);
   --font-heading: 'Playfair Display', serif;
   --font-body: 'Montserrat', sans-serif;
 }
@@ -79,6 +81,26 @@ h1, h2, h3, h4, h5, h6 {
   to { opacity: 1; }
 }
 
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.8s ease forwards;
 }
@@ -87,11 +109,23 @@ h1, h2, h3, h4, h5, h6 {
   animation: fadeIn 1s ease forwards;
 }
 
+.animate-slide-left {
+  animation: slideInLeft 0.8s ease forwards;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.8s ease forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s ease forwards;
+}
+
 /* Glass effect */
 .glass {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 /* Scrollbar */
@@ -105,3 +139,40 @@ h1, h2, h3, h4, h5, h6 {
 /* Letter spacing */
 .tracking-luxe { letter-spacing: 0.25em; }
 .tracking-elegant { letter-spacing: 0.15em; }
+
+/* Image hover zoom */
+.img-zoom {
+  overflow: hidden;
+}
+.img-zoom img {
+  transition: transform 0.7s ease;
+}
+.img-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Pulse ring for CTA */
+@keyframes pulseRing {
+  0% { box-shadow: 0 0 0 0 rgba(46, 163, 242, 0.4); }
+  70% { box-shadow: 0 0 0 12px rgba(46, 163, 242, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 163, 242, 0); }
+}
+
+.pulse-cta {
+  animation: pulseRing 2s ease infinite;
+}
+
+/* Divider */
+.section-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--blue), var(--blue-light));
+}
