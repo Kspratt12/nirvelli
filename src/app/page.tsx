@@ -162,7 +162,7 @@ function QuickBookWidget() {
   const tabs = Object.keys(quickBookCategories);
 
   return (
-    <section className="relative z-20 -mt-16 pb-4">
+    <section className="relative z-20 py-10">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white shadow-[0_20px_60px_rgba(0,0,0,0.12)] rounded-2xl overflow-hidden">
           {/* Header */}
