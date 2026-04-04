@@ -12,7 +12,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <Image src="/logo-transparent.png" alt="Nirvelli Med Spa & Laser" width={48} height={56} />
+              <Image src="/nirvelli-logo.png" alt="Nirvelli Med Spa & Laser" width={48} height={56} />
               <div>
                 <h3 className="text-2xl font-heading font-medium text-white">Nirvelli</h3>
                 <p className="text-[9px] tracking-luxe uppercase font-body font-light text-white/50">
