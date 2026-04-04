@@ -32,7 +32,8 @@ export default function Navbar() {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass shadow-sm py-2" : "bg-transparent py-4"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center gap-2.5">
+            <Image src="/logo-transparent.png" alt="Nirvelli" width={32} height={38} className={`transition-all duration-300 ${scrolled ? "" : "brightness-0 invert"}`} />
             <div>
               <h1 className={`font-heading text-xl md:text-2xl font-medium transition-colors duration-300 ${scrolled ? "text-navy" : "text-white"}`}>
                 Nirvelli
@@ -88,7 +89,7 @@ export default function Navbar() {
         <div className="flex flex-col h-full">
           <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
             <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
-              <Image src="/logo-black.png" alt="Nirvelli" width={22} height={28} />
+              <Image src="/logo-transparent.png" alt="Nirvelli" width={26} height={32} />
               <h2 className="font-heading text-xl font-medium text-navy">Nirvelli</h2>
             </Link>
             <button onClick={() => setIsOpen(false)} className="p-2 text-charcoal hover:text-blue transition-colors" aria-label="Close menu">
