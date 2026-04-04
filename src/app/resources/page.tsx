@@ -10,7 +10,7 @@ export default function Resources() {
     <>
       {/* Hero */}
       <section className="relative h-[45vh] flex items-center justify-center overflow-hidden">
-        <Image src="/product-4-eminence-organic-skin-care.jpg" alt="Nirvelli Med Spa products" fill className="object-cover" sizes="100vw" priority />
+        <Image src="/product.jpg" alt="Nirvelli Med Spa products" fill className="object-cover" quality={90} sizes="100vw" priority />
         <div className="absolute inset-0 bg-gradient-to-b from-navy/60 via-navy/40 to-navy/80" />
         <div className="relative z-10 text-center px-4">
           <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold mb-4 animate-fade-in">For Our Patients</p>

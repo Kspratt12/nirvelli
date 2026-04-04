@@ -289,7 +289,7 @@ function WhyChooseUs() {
           </div>
           <div className="relative">
             <div className="relative h-[520px] rounded-sm overflow-hidden">
-              <Image src="/therapist-chair.jpg" alt="Nirvelli Med Spa treatment room" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+              <Image src="/therapist-chair.jpg" alt="Nirvelli Med Spa treatment room" fill className="object-cover" quality={90} sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
             <div className="absolute -bottom-8 -left-8 bg-white shadow-xl p-8 hidden md:block">
               <div className="flex gap-10">
@@ -527,7 +527,7 @@ function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div className="relative">
             <div className="relative h-[560px] rounded-xl overflow-hidden">
-              <Image src="/team-pic.jpg" alt="Nirvelli Med Spa team in Cary NC" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+              <Image src="/team-pic.jpg" alt="Nirvelli Med Spa team in Cary NC" fill className="object-cover" quality={90} sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-white shadow-2xl p-8 rounded-xl hidden md:block border border-gray-100">
               <div className="flex items-center gap-6">
@@ -741,12 +741,12 @@ function SpaClubSection() {
   return (
     <section className="py-24 bg-navy relative overflow-hidden">
       <div className="absolute inset-0">
-        <Image src="/mint-hot-stone-massage.jpg" alt="" fill className="object-cover opacity-15" sizes="100vw" />
+        <Image src="/product-3.jpg" alt="" fill className="object-cover opacity-15" sizes="100vw" />
       </div>
       <div ref={section.ref} className={`relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${section.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-10 md:p-14 flex flex-col lg:flex-row items-center gap-10">
           <div className="relative hidden lg:block w-64 h-80 shrink-0 rounded-sm overflow-hidden">
-            <Image src="/facial2.jpg" alt="Premium spa treatment" fill className="object-cover" sizes="256px" />
+            <Image src="/foot-massage.jpg" alt="Premium spa treatment" fill className="object-cover" quality={90} sizes="256px" />
             <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent" />
           </div>
           <div className="flex-1 text-center lg:text-left">
@@ -882,7 +882,7 @@ function FinalCTA() {
     <section className="relative overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
         <div className="relative hidden lg:block">
-          <Image src="/hero-4.jpg" alt="Nirvelli Med Spa experience" fill className="object-cover" sizes="50vw" />
+          <Image src="/hero-4.jpg" alt="Nirvelli Med Spa experience" fill className="object-cover" quality={90} sizes="50vw" />
         </div>
         <div className="bg-navy py-24 lg:py-32 px-8 md:px-16 lg:px-20 flex items-center relative">
           <div className="absolute inset-0 opacity-5">

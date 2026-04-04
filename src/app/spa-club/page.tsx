@@ -191,8 +191,8 @@ export default function SpaClub() {
             <AnimatedSection delay={0.2}>
               <div className="relative rounded-xl overflow-hidden aspect-[4/5]">
                 <Image
-                  src="/building-inside.png"
-                  alt="Inside Nirvelli Day Spa"
+                  src="/product-6.jpg"
+                  alt="Nirvelli Med Spa products"
                   fill
                   className="object-cover"
                 />

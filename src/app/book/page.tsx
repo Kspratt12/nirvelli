@@ -10,7 +10,7 @@ export default function Book() {
     <>
       <section className="relative h-[45vh] flex items-center justify-center bg-navy overflow-hidden">
         <div className="absolute inset-0 opacity-15">
-          <Image src="/hero-3.jpg" alt="" fill className="object-cover" sizes="100vw" />
+          <Image src="/hero-3.jpg" alt="" fill className="object-cover" quality={90} sizes="100vw" />
         </div>
         <div className="absolute inset-0 bg-navy/85" />
         <div className="relative z-10 text-center px-4">
@@ -55,12 +55,12 @@ export default function Book() {
             <div className="bg-navy p-6 text-center">
               <p className="text-3xl font-heading font-medium text-blue mb-1">$69</p>
               <p className="text-sm font-body font-medium text-white mb-1">First Facial</p>
-              <p className="text-xs font-body font-light text-white/50">60 min — New clients</p>
+              <p className="text-xs font-body font-light text-white/50">60 min, New clients</p>
             </div>
             <div className="bg-navy p-6 text-center">
               <p className="text-3xl font-heading font-medium text-blue mb-1">$69</p>
               <p className="text-sm font-body font-medium text-white mb-1">First Massage</p>
-              <p className="text-xs font-body font-light text-white/50">60 min — New clients</p>
+              <p className="text-xs font-body font-light text-white/50">60 min, New clients</p>
             </div>
           </div>
         </div>

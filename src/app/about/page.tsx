@@ -29,7 +29,7 @@ export default function About() {
     <>
       {/* Hero */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-        <Image src="/team-pic.jpg" alt="Nirvelli Med Spa team" fill className="object-cover" sizes="100vw" priority quality={90} />
+        <Image src="/staff.png" alt="Nirvelli Med Spa team" fill className="object-cover" quality={90} sizes="100vw" priority />
         <div className="absolute inset-0 bg-gradient-to-b from-navy/50 via-navy/30 to-navy/70" />
         <div className="relative z-10 text-center">
           <div className="animate-fade-in" style={{ animationDelay: "0.2s", opacity: 0 }}>
@@ -72,7 +72,7 @@ export default function About() {
             </div>
             <div className="relative">
               <div className="relative h-[520px] rounded-xl overflow-hidden">
-                <Image src="/building-inside.png" alt="Inside Nirvelli Med Spa" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                <Image src="/product-4-eminence-organic-skin-care.jpg" alt="Nirvelli Med Spa products" fill className="object-cover" quality={90} sizes="(max-width: 1024px) 100vw, 50vw" />
               </div>
               <div className="absolute -bottom-6 -left-6 bg-white shadow-2xl p-8 rounded-xl hidden md:block border border-gray-100">
                 <div className="flex items-center gap-8">
@@ -173,7 +173,7 @@ export default function About() {
         <div ref={values.ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${values.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="relative h-[480px] rounded-xl overflow-hidden">
-              <Image src="/our-massage-therapist-and-specialist.png" alt="Nirvelli Med Spa treatments" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+              <Image src="/our-massage-therapist-and-specialist.png" alt="Nirvelli Med Spa treatments" fill className="object-cover" quality={90} sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
             <div>
               <div className="flex items-center gap-3 mb-6">
@@ -234,7 +234,7 @@ export default function About() {
             </div>
           </div>
           <div className="relative hidden lg:block">
-            <Image src="/staff.png" alt="Nirvelli team" fill className="object-cover" sizes="50vw" />
+            <Image src="/product-5.jpg" alt="Nirvelli products" fill className="object-cover" quality={90} sizes="50vw" />
           </div>
         </div>
       </section>

@@ -419,7 +419,7 @@ export default function Services() {
               {/* Right: image */}
               <div className="relative min-h-[280px] md:min-h-0">
                 <Image
-                  src="/mint-hot-stone-massage.jpg"
+                  src="/nails.jpg"
                   alt="Spa Club membership"
                   fill
                   className="object-cover"
@@ -433,7 +433,7 @@ export default function Services() {
       {/* ===== Ready to Book ===== */}
       <section className="relative py-32 overflow-hidden">
         <Image
-          src="/main-hero-2-cupping-massage.jpg"
+          src="/hero-2.jpg"
           alt="Book your appointment"
           fill
           className="object-cover"

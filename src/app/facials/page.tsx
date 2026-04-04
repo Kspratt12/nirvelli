@@ -28,7 +28,7 @@ export default function Facials() {
     <>
       {/* Hero */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-        <Image src="/facial.jpg" alt="Facial treatment in Cary NC" fill className="object-cover" sizes="100vw" priority quality={90} />
+        <Image src="/facial.jpg" alt="Facial treatment in Cary NC" fill className="object-cover" quality={90} sizes="100vw" priority />
         <div className="absolute inset-0 bg-gradient-to-b from-navy/50 via-navy/30 to-navy/70" />
         <div className="relative z-10 text-center px-4">
           <div className="animate-fade-in" style={{ animationDelay: "0.2s", opacity: 0 }}>
@@ -98,7 +98,7 @@ export default function Facials() {
               </div>
             </div>
             <div className="relative h-[520px] rounded-xl overflow-hidden">
-              <Image src="/infusion-peel.jpg" alt="Medical facial treatment" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+              <Image src="/infusion-peel.jpg" alt="Medical facial treatment" fill className="object-cover" quality={90} sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
           </div>
         </div>
@@ -151,7 +151,7 @@ export default function Facials() {
         <div ref={hydra.ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${hydra.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="relative h-[480px] rounded-xl overflow-hidden">
-              <Image src="/hydrafacial.jpg" alt="HydraFacial treatment" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+              <Image src="/hydrafacial.jpg" alt="HydraFacial treatment" fill className="object-cover" quality={90} sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
             <div>
               <div className="flex items-center gap-3 mb-6">
@@ -223,7 +223,7 @@ export default function Facials() {
       <section className="relative overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[450px]">
           <div className="relative hidden lg:block">
-            <Image src="/facial2.jpg" alt="Facial treatment results" fill className="object-cover" sizes="50vw" />
+            <Image src="/facial2.jpg" alt="Facial treatment results" fill className="object-cover" quality={90} sizes="50vw" />
           </div>
           <div className="bg-navy py-24 lg:py-32 px-8 md:px-16 lg:px-20 flex items-center">
             <div>
