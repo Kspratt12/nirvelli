@@ -35,7 +35,7 @@ const serviceCategories = [
     title: "Facials & Skin Care",
     description:
       "Clinically driven treatments using medical-grade products. Exfoliate, extract, and re-hydrate for visible, long-lasting results.",
-    image: "/facial2.jpg",
+    image: "/eyebrow-wax.jpg",
     services: [
       { name: "1st Time Facial", price: "$69", note: "60 min - New clients only" },
       { name: "Club OE Facial", price: "$89", note: "60 min - Members" },
@@ -173,7 +173,7 @@ const serviceCategories = [
     title: "Chiropractic & Acupuncture",
     description:
       "Dr. David Sefried provides holistic chiropractic care and acupuncture services.",
-    image: "/acupuncture.png",
+    image: "/staff5.jpg",
     services: [
       { name: "Chiropractic Adjustment", price: "From $65" },
       { name: "Acupuncture Session", price: "From $85" },

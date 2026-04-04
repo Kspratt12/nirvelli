@@ -334,7 +334,7 @@ function ServicesSection() {
       headline: "Natural Healing for Body & Mind",
       desc: "Facial rejuvenation, weight loss support, stress relief, and pain management through traditional acupuncture.",
       emotion: "Restore balance and reduce stress naturally.",
-      image: "/acupuncture.png",
+      image: "/hero-1.jpg",
       link: "/acupuncture",
     },
     {
