@@ -52,13 +52,13 @@ export default function About() {
               <div className="section-divider mb-6" />
               <div className="space-y-4 text-text text-base font-body font-light leading-relaxed">
                 <p>
-                  <strong className="text-navy font-medium">Nirvelli</strong> — a Native American word meaning &ldquo;Water Child&rdquo; of Cherokee origin — was founded with a belief in the power of natural healing. Our name reflects our approach: gentle, restorative, and deeply effective.
+                  <strong className="text-navy font-medium">Nirvelli</strong>, a Native American word meaning &ldquo;Water Child&rdquo; of Cherokee origin, was founded with a belief in the power of natural healing. Our name reflects our approach: gentle, restorative, and deeply effective.
                 </p>
                 <p>
                   Founded by <strong className="text-navy font-medium">Dr. Heather Sefried</strong> and <strong className="text-navy font-medium">Dr. David Sefried</strong>, Nirvelli has grown from a small wellness practice into one of the Triangle&apos;s most trusted med spas. For over 20 years, we&apos;ve been helping clients achieve real, visible results through medical-grade treatments and personalized care.
                 </p>
                 <p>
-                  We&apos;ve been providing the Cary, NC area with the highest quality massage, acupuncture, facial, and laser services — combining clinical expertise with a deeply relaxing spa experience.
+                  We&apos;ve been providing the Cary, NC area with the highest quality massage, acupuncture, facial, and laser services, combining clinical expertise with a deeply relaxing spa experience.
                 </p>
               </div>
             </div>
@@ -72,7 +72,7 @@ export default function About() {
           {/* Awards & Recognition */}
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: <Award size={24} className="text-gold" />, title: "5x Diamond Award", desc: "Cary Living — \"Favorite Place to Get Pampered\"" },
+              { icon: <Award size={24} className="text-gold" />, title: "5x Diamond Award", desc: "Cary Living, \"Favorite Place to Get Pampered\"" },
               { icon: <Heart size={24} className="text-gold" />, title: "Best Spa", desc: "Voted Best Spa by Cary News, 5 years running" },
               { icon: <Users size={24} className="text-gold" />, title: "Best Massage", desc: "Voted Best Massage Therapist by Cary News" },
               { icon: <Shield size={24} className="text-gold" />, title: "20+ Years", desc: "Trusted by the Cary community since 2003" },
@@ -162,7 +162,7 @@ export default function About() {
           <div className="text-center mb-14">
             <h2 className="text-4xl font-heading font-medium text-navy mb-4">Why Choose <span className="italic text-blue">Nirvelli</span></h2>
             <p className="text-text text-base font-body font-light max-w-2xl mx-auto">
-              We&apos;re not just a spa — we&apos;re a results-driven medical aesthetics practice with over two decades of proven outcomes.
+              We&apos;re not just a spa. We&apos;re a results-driven medical aesthetics practice with over two decades of proven outcomes.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">

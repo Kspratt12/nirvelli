@@ -275,7 +275,7 @@ function WhyChooseUs() {
               Your Wellness<br />Deserves <span className="italic text-blue">Expert</span> Care.
             </h2>
             <p className="text-text text-lg font-body font-light leading-relaxed mb-6 max-w-lg">
-              Nirvelli is Cary&apos;s premier med spa — where medical-grade treatments meet personalized attention. Every service is delivered by licensed practitioners who measure outcomes, not just effort.
+              Nirvelli is Cary&apos;s premier med spa, where medical-grade treatments meet personalized attention. Every service is delivered by licensed practitioners who measure outcomes, not just effort.
             </p>
             <p className="text-text/60 text-base font-body font-light leading-relaxed mb-10 max-w-lg">
               From advanced facials and HydraFacials to therapeutic massage and acupuncture, we combine clinical expertise with a warm, welcoming environment you&apos;ll love coming back to.
@@ -406,7 +406,7 @@ function WhatToExpect() {
               Simple from<br />start to <span className="italic text-blue">finish</span>.
             </h2>
             <p className="text-text text-base font-body font-light leading-relaxed mb-10 max-w-sm">
-              No pressure, no surprises — just expert care designed around you.
+              No pressure, no surprises, just expert care designed around you.
             </p>
             <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="group px-10 py-4 bg-navy text-white text-sm tracking-elegant uppercase font-body font-bold hover:bg-blue transition-all duration-300 inline-flex items-center gap-2">
               Book Your First Visit <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -414,11 +414,16 @@ function WhatToExpect() {
             <p className="text-text/40 text-xs font-body font-light mt-3">Online booking takes less than 60 seconds</p>
           </div>
           <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {steps.map((step) => (
-              <div key={step.num} className="p-8 bg-ice rounded-xl hover:shadow-lg transition-all duration-300 group">
-                <span className="text-4xl font-heading font-bold text-blue/20 group-hover:text-blue/40 transition-colors">{step.num}</span>
-                <h3 className="text-lg font-heading font-semibold text-navy mt-3 mb-2">{step.title}</h3>
-                <p className="text-text text-sm font-body font-light leading-relaxed">{step.desc}</p>
+            {steps.map((step, i) => (
+              <div key={step.num} className="relative p-8 bg-white rounded-2xl border border-gray-100 hover:border-blue/20 hover:shadow-xl transition-all duration-500 group overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue via-blue-light to-blue opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue/10 to-blue/5 flex items-center justify-center group-hover:from-blue group-hover:to-blue-dark transition-all duration-500">
+                    <span className="text-lg font-heading font-bold text-blue group-hover:text-white transition-colors duration-500">{step.num}</span>
+                  </div>
+                  <h3 className="text-lg font-heading font-semibold text-navy">{step.title}</h3>
+                </div>
+                <p className="text-text text-sm font-body font-light leading-relaxed pl-16">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -447,7 +452,7 @@ function NewClientOffer() {
             First-time clients only. Experience award-winning treatments at a special introductory rate.
           </p>
           <p className="text-gold/80 text-xs font-body font-semibold tracking-wide uppercase mb-8">
-            Limited availability — new client spots fill quickly
+            Limited availability. New client spots fill quickly
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <div className="text-center">
@@ -470,7 +475,7 @@ function NewClientOffer() {
 function ResultsSection() {
   const section = useInView();
   const results = [
-    { image: "/hydrafacial-before-after.jpg", title: "HydraFacial", caption: "Visible improvement in skin texture, tone, and clarity — real client results", outcome: "Smoother, clearer skin" },
+    { image: "/hydrafacial-before-after.jpg", title: "HydraFacial", caption: "Visible improvement in skin texture, tone, and clarity. Real client results", outcome: "Smoother, clearer skin" },
     { image: "/blueberry-smoothie-peel-facial.jpg", title: "Clinical Peel", caption: "Targeting hyperpigmentation and uneven texture for lasting transformation", outcome: "Restored glow" },
     { image: "/deep-tissue-massage.jpg", title: "Deep Tissue", caption: "Chronic tension relief from our award-winning massage therapists", outcome: "Lasting relief" },
   ];
@@ -547,7 +552,7 @@ function AboutSection() {
               Award-Winning Care<br />Since <span className="italic text-blue">2003</span>
             </h2>
             <p className="text-text text-lg font-body font-light leading-relaxed mb-5 max-w-lg">
-              <strong className="text-navy font-medium">Nirvelli</strong> — meaning &ldquo;Water Child&rdquo; from Cherokee origin — blends clinical expertise with natural healing. For over two decades, we&apos;ve been Cary&apos;s trusted destination for results-driven wellness.
+              <strong className="text-navy font-medium">Nirvelli</strong>, meaning &ldquo;Water Child&rdquo; from Cherokee origin, blends clinical expertise with natural healing. For over two decades, we&apos;ve been Cary&apos;s trusted destination for results-driven wellness.
             </p>
             <p className="text-text/60 text-base font-body font-light leading-relaxed mb-10 max-w-lg">
               Founded by Dr. Heather and Dr. David Sefried, our med spa brings together licensed chiropractors, certified aestheticians, and award-winning massage therapists under one roof.
@@ -581,19 +586,19 @@ function TeamSection() {
   const team = [
     {
       name: "Dr. Heather Sefried",
-      title: "D.C. — Owner & Founder",
+      title: "D.C., Owner & Founder",
       image: "/dr-heather-2.png",
       bio: "Doctor of Chiropractic from Sherman College. Over 25 years of experience in holistic wellness and clinical aesthetics. The driving force behind Nirvelli.",
     },
     {
       name: "Dr. David Sefried",
-      title: "D.C. — Co-Owner & Chiropractor",
+      title: "D.C., Co-Owner & Chiropractor",
       image: "/dr-david-sefried.png",
       bio: "Specializing in chiropractic treatments and acupuncture. Expert in holistic pain management, facial acupuncture, and weight loss programs.",
     },
     {
       name: "Dr. Ed Hagerich",
-      title: "D.C. — Chiropractor & Specialist",
+      title: "D.C., Chiropractor & Specialist",
       image: "/staff3.jpg",
       bio: "Deep expertise in spinal health, pain management, and integrative wellness. Focused on comprehensive musculoskeletal care and holistic recovery.",
     },
@@ -810,11 +815,11 @@ function LocationSection() {
 /* ─── FAQ (EXPANDED) ─── */
 const faqs = [
   { q: "What should I expect on my first visit?", a: "Arrive 10–15 minutes early to complete paperwork. Your provider will start with a thorough consultation to understand your goals, skin type, and any concerns. Then you'll receive your personalized treatment in a relaxing, professional environment. New clients enjoy $69 facials and massages." },
-  { q: "Does acupuncture hurt?", a: "Most clients feel little to no pain. Acupuncture needles are extremely thin — much thinner than injection needles. Many people describe the sensation as a slight tingling or pressure. Most clients find it deeply relaxing and some even fall asleep during treatment." },
+  { q: "Does acupuncture hurt?", a: "Most clients feel little to no pain. Acupuncture needles are extremely thin, much thinner than injection needles. Many people describe the sensation as a slight tingling or pressure. Most clients find it deeply relaxing and some even fall asleep during treatment." },
   { q: "Are your treatments safe?", a: "Absolutely. All treatments are performed by licensed, trained professionals. We use FDA-approved products and medical-grade equipment. Every treatment begins with a consultation to ensure it's appropriate for your skin type, health conditions, and goals." },
-  { q: "How soon will I see results?", a: "Many clients notice improvement after their first visit — especially with facials, HydraFacials, and massage. For treatments like acupuncture, laser, and injectables, optimal results typically develop over a series of sessions. Your provider will set clear expectations during your consultation." },
+  { q: "How soon will I see results?", a: "Many clients notice improvement after their first visit, especially with facials, HydraFacials, and massage. For treatments like acupuncture, laser, and injectables, optimal results typically develop over a series of sessions. Your provider will set clear expectations during your consultation." },
   { q: "What is the Nirvelli Spa Club?", a: "For $89/month, members receive one premium treatment of their choice plus 15% off all products and spa add-on services. Unused treatments roll over for up to 6 months. It's the best value in Cary for consistent self-care." },
-  { q: "What makes Nirvelli different from other spas?", a: "We're not just a spa — we're a results-driven medical aesthetics practice. Our team includes licensed chiropractors, certified aestheticians, and medical professionals. We've been serving Cary since 2003, are 5x Cary Living Diamond Award Winners, and focus on measurable outcomes, not just relaxation." },
+  { q: "What makes Nirvelli different from other spas?", a: "We're not just a spa. We're a results-driven medical aesthetics practice. Our team includes licensed chiropractors, certified aestheticians, and medical professionals. We've been serving Cary since 2003, are 5x Cary Living Diamond Award Winners, and focus on measurable outcomes, not just relaxation." },
   { q: "Do you accept insurance?", a: "Med spa services are typically not covered by insurance. However, some chiropractic and medical massage services may be eligible. Contact us at (919) 297-0107 for details." },
   { q: "What areas do you serve?", a: "We're located in Cary, NC and proudly serve clients from Raleigh, Holly Springs, Morrisville, Apex, and throughout the Triangle area. Many clients drive 30+ minutes for our quality of care." },
 ];
@@ -909,7 +914,7 @@ function StickyCTA() {
       <div className="max-w-5xl mx-auto flex items-center justify-between gap-3">
         <div className="hidden sm:block">
           <p className="text-sm font-body font-semibold text-navy">New clients: <span className="text-blue">$69</span> facial or massage</p>
-          <p className="text-[11px] font-body font-light text-text">Limited availability — book today</p>
+          <p className="text-[11px] font-body font-light text-text">Limited availability. Book today</p>
         </div>
         <div className="flex items-center gap-3 w-full sm:w-auto">
           <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none px-6 py-2.5 bg-blue text-white text-xs tracking-elegant uppercase font-body font-bold hover:bg-blue-dark transition-all text-center">
