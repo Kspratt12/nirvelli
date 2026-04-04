@@ -884,7 +884,10 @@ function FinalCTA() {
         <div className="relative hidden lg:block">
           <Image src="/hero-4.jpg" alt="Nirvelli Med Spa experience" fill className="object-cover" quality={90} sizes="50vw" />
         </div>
-        <div className="bg-navy py-24 lg:py-32 px-8 md:px-16 lg:px-20 flex items-center relative">
+        <div className="bg-navy py-24 lg:py-32 px-8 md:px-16 lg:px-20 flex items-center relative overflow-hidden">
+          <div className="absolute inset-0 lg:hidden">
+            <Image src="/hero-4.jpg" alt="" fill className="object-cover opacity-20" sizes="100vw" />
+          </div>
           <div className="absolute inset-0 opacity-5">
             <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle at 30% 50%, rgba(46,163,242,0.4) 0%, transparent 50%)" }} />
           </div>

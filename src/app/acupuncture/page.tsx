@@ -221,8 +221,11 @@ export default function Acupuncture() {
       {/* CTA */}
       <section className="relative overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[450px]">
-          <div className="bg-navy py-24 lg:py-32 px-8 md:px-16 lg:px-20 flex items-center">
-            <div>
+          <div className="bg-navy py-24 lg:py-32 px-8 md:px-16 lg:px-20 flex items-center relative overflow-hidden">
+            <div className="absolute inset-0 lg:hidden">
+              <Image src="/acupuncture.png" alt="" fill className="object-cover opacity-20" sizes="100vw" />
+            </div>
+            <div className="relative z-10">
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-12 h-px bg-blue" />
                 <p className="text-blue text-xs tracking-luxe uppercase font-body font-semibold">Get Started</p>
